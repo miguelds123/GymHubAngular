@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button 
+  class="example-header-image" 
+   matTooltip="AppVideojuegos"
+  [routerLink]="['/inicio']" routerLinkActive="link-active" ></button>
+ <button [matMenuTriggerFor]="menu1" mat-icon-button class="example-icon"
+   matTooltip="Menu">
+   <mat-icon>menu</mat-icon>
+ </button>
+ 
+ <!--https://fonts.google.com/icons-->
+ <button mat-icon-button matTooltip="Mantenimientos" [matMenuTriggerFor]="menu2"> <mat-icon>save_as</mat-icon></button>
+ <!-- 
+       https://material.angular.io/components/menu/overview
+       nested menu
+   -->
+ <mat-menu #menu1="matMenu">
+   <button mat-menu-item [routerLink]="['/inicio']" routerLinkActive="link-active">Inicio</button>
+   <button mat-menu-item [routerLink]="['/acerca-de']" routerLinkActive="link-active">Acerca de</button>
+   <button mat-menu-item [routerLink]="['/videojuego']" routerLinkActive="link-active">Videojuego</button>
+
+ </mat-menu>
+ <mat-menu #menu2="matMenu">
+   <button mat-menu-item [routerLink]="'/videojuego-table'" [routerLinkActive]="'link-active'">Videojuegos</button>
+
+ </mat-menu>
+ <!--enlaces de la app-->
+ <!--https://material.angular.io/guide/typography-->
+ <div class="example-spacer"></div>
+ <div class="example-spacer">
+   <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()"
+     [routerLinkActive]="'link-active'">
+     <mat-icon>shopping_cart</mat-icon>
+   </button>
+   <!-- Menu de Usuario-->
+   <span class="mat-caption" *ngIf="isAuntenticated">{{currentUser?.email}}</span>
+   <button mat-icon-button [matMenuTriggerFor]="menu3">
+     <mat-icon [ngStyle]="{'color':isAuntenticated ? '#62E1CA': '#7E9BEF'}">person</mat-icon>
+   </button>
+   <mat-menu #menu3="matMenu">
+     @if (!isAuntenticated) {
+     <button mat-menu-item >
+       <mat-icon>person_add</mat-icon>
+       <span>Login</span>
+     </button>
+    }
+    @else{
+     <button mat-menu-item >
+       <mat-icon>person_remove</mat-icon>
+       <span>Logout</span>
+     </button>
+    }
+   </mat-menu>
+ </div>
+  </mat-toolbar>

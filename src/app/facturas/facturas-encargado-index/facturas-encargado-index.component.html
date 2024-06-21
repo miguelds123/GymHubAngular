@@ -1,0 +1,44 @@
+<div class="grid-container">
+    <mat-grid-list [cols]="4" rowHeight="1:2.1" gutterSize="10px">
+      @for (item of datos; track item.id) {
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header class="dashboard-card-header">
+            <mat-card-title>{{ item.fecha }}</mat-card-title>
+          </mat-card-header>
+          <img
+            mat-card-image
+            [src]="'../../assets/images/' + item.imagen"
+            [alt]="item.nombre"
+          />
+          <mat-card-content class="dashboard-card-content">
+            <div class="price">{{ "₡ " + item.total }}</div>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions>
+            <button
+              mat-mini-fab
+              color="accent"
+              matTooltip="Detalle Videjuego"
+              aria-label="Detalle Videjuego"
+              color="primary"
+              (click)="detalle(item.id)" 
+            >
+              <mat-icon class="mat-18">info</mat-icon>
+            </button>
+            <button
+              mat-mini-fab
+              color="accent"
+              matTooltip="Comprar"
+              aria-label="Comprar"
+              color="primary"
+            >
+              <mat-icon class="mat-18">add_shopping_cart</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </div>
+  

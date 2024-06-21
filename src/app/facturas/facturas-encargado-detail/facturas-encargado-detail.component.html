@@ -1,0 +1,44 @@
+@if(datos){
+    <mat-card class="home-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{datos?.id}}</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content class="home-card-content">
+        <img mat-card-image [src]="'../../assets/images/'+datos.imagen" 
+        [alt]="datos.nombre" />
+        <div>
+          <div>
+            <p>{{datos.descripcion}}</p>
+          </div>
+          <div>
+            <mat-chip-listbox aria-label="Generos">
+              @for (item of datos.generos; track item.id) {
+              <mat-chip-option color="accent" selected>
+                {{item.nombre}}
+              </mat-chip-option>
+                }
+            </mat-chip-listbox>
+          </div>
+          <div>
+            <p class="price">{{datos.precio | currency:"USD"}}</p>
+          </div>
+          <div>
+            <mat-chip-listbox aria-label="Plataformas">
+              <mat-chip-grid role="list">
+                @for (item of datos.plataformas; track item.id) {
+                <mat-chip-row role="listitem" selected color="primary" highlighted>
+                  {{item.plataforma.nombre}}
+                  <mat-chip highlighted color="accent">
+                    {{item.anno_lanzamiento}}
+                  </mat-chip>
+                </mat-chip-row>
+              }
+              </mat-chip-grid>
+            </mat-chip-listbox>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    }
