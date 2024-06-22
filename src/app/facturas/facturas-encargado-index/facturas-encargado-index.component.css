@@ -1,12 +1,31 @@
 grid-container {
     margin: 20px;
   }
+
+  mat-card-title{
+    font-size: 17px;
+  }
+
+  mat-divider{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .texto{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .dashboard-card {
     position: absolute;
     top: 15px;
     left: 15px;
     right: 15px;
-    bottom: 15px;
+    bottom: 5px;
   }
   .more-button {
     position: absolute;
@@ -20,9 +39,12 @@ grid-container {
     font-weight: 500;
     margin-bottom: 0;
     padding: 0.5em;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     font-size: 1.5em;
-    background-color: #00bfa5;
+    background-color: #616161;
     color: white;
   }
   .dashboard-card-content {

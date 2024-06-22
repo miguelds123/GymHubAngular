@@ -8,6 +8,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatBadgeModule} from '@angular/material/badge'
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {MatBadgeModule} from '@angular/material/badge'
     MatToolbarModule, MatButtonModule, MatIconModule,
     MatMenuModule,
     MatBadgeModule,
+    MatCardModule,
+    MatListModule,
   ],
   exports: [
     HeaderComponent,
