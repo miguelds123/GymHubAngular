@@ -9,7 +9,7 @@
  </button>
  
  <!--https://fonts.google.com/icons-->
- <button mat-icon-button matTooltip="Mantenimientos" [matMenuTriggerFor]="menu2"> <mat-icon>save_as</mat-icon></button>
+ 
  <!-- 
        https://material.angular.io/components/menu/overview
        nested menu
@@ -17,13 +17,10 @@
  <mat-menu #menu1="matMenu">
    <button mat-menu-item [routerLink]="['/inicio']" routerLinkActive="link-active">Inicio</button>
    <button mat-menu-item [routerLink]="['/acerca-de']" routerLinkActive="link-active">Acerca de</button>
-   <button mat-menu-item [routerLink]="['/videojuego']" routerLinkActive="link-active">Videojuego</button>
+   <button mat-menu-item [routerLink]="['/facturaAdministrador/4']" routerLinkActive="link-active">Facturas del Administrador</button>
 
  </mat-menu>
- <mat-menu #menu2="matMenu">
-   <button mat-menu-item [routerLink]="'/videojuego-table'" [routerLinkActive]="'link-active'">Videojuegos</button>
-
- </mat-menu>
+ 
  <!--enlaces de la app-->
  <!--https://material.angular.io/guide/typography-->
  <div class="example-spacer"></div>

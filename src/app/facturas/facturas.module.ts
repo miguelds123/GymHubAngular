@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FacturasEncargadoIndexComponent } from './facturas-encargado-index/facturas-encargado-index.component';
 import {FacturaDetailComponent} from "./facturas-encargado-detail/facturas-encargado-detail.component";
 
@@ -44,6 +45,7 @@ import {FacturaDetailComponent} from "./facturas-encargado-detail/facturas-encar
     MatRadioModule,
     MatChipsModule,
     MatBadgeModule,
+    MatFormFieldModule,
   ]
 })
 export class FacturasModule { }

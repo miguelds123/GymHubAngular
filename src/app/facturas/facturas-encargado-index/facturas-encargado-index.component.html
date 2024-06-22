@@ -6,11 +6,6 @@
           <mat-card-header class="dashboard-card-header">
             <mat-card-title>{{ item.fecha }}</mat-card-title>
           </mat-card-header>
-          <img
-            mat-card-image
-            [src]="'../../assets/images/' + item.imagen"
-            [alt]="item.nombre"
-          />
           <mat-card-content class="dashboard-card-content">
             <div class="price">{{ "₡ " + item.total }}</div>
           </mat-card-content>
