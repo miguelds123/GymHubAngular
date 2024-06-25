@@ -1,0 +1,29 @@
+<div *ngIf="datos" class="grid-container">
+    <mat-card class="home-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ datos.nombre }}</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content class="home-card-content">
+        <div>
+          <div>
+            <p>{{ datos.descripcion }}</p>
+          </div>
+          <div>
+            <p>Categoría: {{ datos.categoria }}</p>
+          </div>
+          <div>
+            <p>Peso: {{ datos.peso | number: '1.2-2' }} kg</p>
+          </div>
+          <div>
+            <p>Marca: {{ datos.marca }}</p>
+          </div>
+          <div>
+            <p class="price">{{"₡ " + datos.precio}}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

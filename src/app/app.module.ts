@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FacturasModule } from './facturas/facturas.module';
+import { ProductoModule } from './producto/producto.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FacturasModule } from './facturas/facturas.module';
     HomeModule,
     UserModule,
     FacturasModule,
+    ProductoModule,
     AppRoutingModule,
     
   ],

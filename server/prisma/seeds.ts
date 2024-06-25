@@ -11,10 +11,6 @@ const main = async () => {
     await prisma.producto.createMany({
       data: productos,
     });
-    //Usuarios - no tiene relaciones
-    await prisma.usuario.createMany({
-      data: usuarios,
-    });
     //Servicio - no tiene relaciones
     await prisma.servicio.createMany({
       data: servicios,
@@ -23,6 +19,10 @@ const main = async () => {
     await prisma.sucursal.createMany({
         data: sucursales,
     })
+    //Usuarios - no tiene relaciones
+    await prisma.usuario.createMany({
+      data: usuarios,
+    });
     //Facturas con relaciones incluidas
     await prisma.factura.create({
       data: {
@@ -91,7 +91,7 @@ const main = async () => {
     await prisma.factura.create({
       data: {
         fecha: new Date('2024-04-23'),
-        clienteId: 4,
+        clienteId: 3,
         sucursalId: 2, 
         total: 420000.00,
         estado: true,

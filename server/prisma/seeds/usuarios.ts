@@ -11,6 +11,7 @@ export const usuarios = [
     fechaNacimiento: new Date("1988-05-14T00:00:00.000Z"),
     password: "1234",
     role: Role.ADMINISTRADOR,
+    sucursalId: 2
   },
   // Usuario 2
   {
@@ -22,6 +23,7 @@ export const usuarios = [
     fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
     password: "1234",
     role: Role.ADMINISTRADOR,
+    sucursalId: 5
   },
   // Usuario 3
   {

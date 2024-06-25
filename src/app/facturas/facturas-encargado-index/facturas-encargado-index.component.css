@@ -56,4 +56,8 @@ grid-container {
     font-size: 2em;
     text-align: center;
   }
+
+  h2{
+    margin-left: 20px;
+  }
   

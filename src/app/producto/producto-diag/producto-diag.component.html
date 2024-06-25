@@ -1,0 +1,44 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+  
+  <div *ngIf="datos">
+    <h2 mat-dialog-title class="dialog-headline">{{ datos.nombre }}</h2>
+  
+    <mat-dialog-content class="content">
+      <div class="details">
+        <div>
+          <p>{{ datos.descripcion }}</p>
+        </div>
+  
+        <div>
+          <mat-chip-listbox aria-label="Categoría">
+            <mat-chip-option color="accent" selected>
+              {{ datos.categoria }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+  
+        <div>
+          <p class="price">{{ datos.precio | currency : "USD" }}</p>
+        </div>
+  
+        <div>
+          <mat-chip-listbox aria-label="Peso">
+            <mat-chip color="primary">
+              Peso: {{ datos.peso }}
+            </mat-chip>
+          </mat-chip-listbox>
+        </div>
+  
+        <div>
+          <mat-chip-listbox aria-label="Marca">
+            <mat-chip color="accent">
+              Marca: {{ datos.marca }}
+            </mat-chip>
+          </mat-chip-listbox>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </div>
+  
