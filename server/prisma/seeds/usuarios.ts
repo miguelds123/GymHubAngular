@@ -10,7 +10,7 @@ export const usuarios = [
     direccion: "Avenida Siempre Viva 742",
     fechaNacimiento: new Date("1988-05-14T00:00:00.000Z"),
     password: "1234",
-    role: Role.ADMINISTRADOR,
+    role: Role.ENCARGADO,
     sucursalId: 2
   },
   // Usuario 2
@@ -22,9 +22,22 @@ export const usuarios = [
     direccion: "Calle Falsa 123",
     fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
     password: "1234",
-    role: Role.ADMINISTRADOR,
+    role: Role.ENCARGADO,
     sucursalId: 5
   },
+
+  {
+    id: 6,
+    nombre: "Jeydan Mitchell",
+    telefono: "555-2222",
+    email: "jeydan.mitchell@prueba.com",
+    direccion: "Calle Falsa 123",
+    fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
+    password: "1234",
+    role: Role.ENCARGADO,
+    sucursalId: 1
+  },
+
   // Usuario 3
   {
     id: 3,
@@ -56,6 +69,6 @@ export const usuarios = [
     direccion: "Calle Estrella 123",
     fechaNacimiento: new Date("1990-09-09T00:00:00.000Z"),
     password: "1234",
-    role: Role.ENCARGADO,
+    role: Role.ADMINISTRADOR,
   }
 ];
