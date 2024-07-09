@@ -1,0 +1,21 @@
+<div class="grid-container" *ngIf="isDefined(datos)">
+    <div class="citas-list">
+      <div *ngFor="let citas of datos.citas" class="cita-item">
+        <mat-card class="dashboard-card">
+          <mat-card-header class="dashboard-card-header" [style.backgroundColor]="getColor(citas.estado)">
+            <mat-card-title>{{ citas.estado }}</mat-card-title>
+            <mat-card-subtitle>{{ citas.fecha | date:'medium' }}</mat-card-subtitle>
+            <button mat-mini-fab color="accent" matTooltip="Ver Detalle" aria-label="Ver Detalle" (click)="detalle(citas.id)">
+              <mat-icon class="mat-18">info</mat-icon>
+            </button>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <p><strong>Usuario:</strong> {{ citas.usuario.nombre }}</p>
+            <p><strong>Servicio:</strong> {{ citas.servicio.nombre }}</p>
+            <!-- Agrega más detalles según sea necesario -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

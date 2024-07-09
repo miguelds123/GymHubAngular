@@ -1,0 +1,22 @@
+.detail-container {
+    margin: 20px;
+  }
+  
+  .detail-title {
+    color: #333;
+  }
+  
+  .detail-section {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .detail-card {
+    width: 400px;
+    max-width: 100%;
+  }
+  
+  .detail-item {
+    margin-bottom: 10px;
+  }
+  

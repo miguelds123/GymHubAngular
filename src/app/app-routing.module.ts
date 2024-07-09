@@ -6,7 +6,8 @@ import { PageNotFoundComponent } from './share/page-not-found/page-not-found.com
 const routes: Routes = [
   {path:'inicio',component:InicioComponent},
   {path:'', redirectTo: '/inicio', pathMatch:'full'},
-  {path:'**',component:PageNotFoundComponent}
+  {path:'**',component:PageNotFoundComponent},
+ 
 ];
 
 @NgModule({

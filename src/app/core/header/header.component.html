@@ -1,50 +1,42 @@
 <mat-toolbar color="primary">
+  <button [matMenuTriggerFor]="menu1" mat-icon-button class="example-icon" matTooltip="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
 
- <button [matMenuTriggerFor]="menu1" mat-icon-button class="example-icon"
-   matTooltip="Menu">
-   <mat-icon>menu</mat-icon>
- </button>
- 
- <!--https://fonts.google.com/icons-->
- 
- <!-- 
-       https://material.angular.io/components/menu/overview
-       nested menu
-   -->
- <mat-menu #menu1="matMenu">
-   <button mat-menu-item [routerLink]="['/inicio']" routerLinkActive="link-active">Inicio</button>
-   <button mat-menu-item [routerLink]="['/acerca-de']" routerLinkActive="link-active">Acerca de</button>
-   <button mat-menu-item [routerLink]="['/facturaAdministrador/1']" routerLinkActive="link-active">Facturas del Administrador</button>
-   <button mat-menu-item [routerLink]="['/productos']" routerLinkActive="link-active">Productos</button>
+  <mat-menu #menu1="matMenu">
+    <button mat-menu-item [routerLink]="['/inicio']" routerLinkActive="link-active">Inicio</button>
+    <button mat-menu-item [routerLink]="['/acerca-de']" routerLinkActive="link-active">Acerca de</button>
+    <!-- Mostrar la opción de Citas solo si el usuario está autenticado y pertenece a una sucursal -->
+    <button mat-menu-item *ngIf="isAuthenticated && sucursalNombre" [routerLink]="['/sucursal']" routerLinkActive="link-active">Citas</button>
+    <button mat-menu-item [routerLink]="['/facturaAdministrador/1']" routerLinkActive="link-active">Facturas del Administrador</button>
+    <button mat-menu-item [routerLink]="['/productos']" routerLinkActive="link-active">Productos</button>
+  </mat-menu>
 
- </mat-menu>
- 
- <!--enlaces de la app-->
- <!--https://material.angular.io/guide/typography-->
- <div class="example-spacer"></div>
- <div class="example-spacer">
-   <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()"
-     [routerLinkActive]="'link-active'">
-     <mat-icon>shopping_cart</mat-icon>
-   </button>
-   <!-- Menu de Usuario-->
-   <span class="mat-caption" *ngIf="isAuntenticated">{{currentUser?.email}}</span>
-   <button mat-icon-button [matMenuTriggerFor]="menu3">
-     <mat-icon [ngStyle]="{'color':isAuntenticated ? '#62E1CA': '#7E9BEF'}">person</mat-icon>
-   </button>
-   <mat-menu #menu3="matMenu">
-     @if (!isAuntenticated) {
-     <button mat-menu-item >
-       <mat-icon>person_add</mat-icon>
-       <span>Login</span>
-     </button>
-    }
-    @else{
-     <button mat-menu-item >
-       <mat-icon>person_remove</mat-icon>
-       <span>Logout</span>
-     </button>
-    }
-   </mat-menu>
- </div>
-  </mat-toolbar>
+  <!-- Nombre de la sucursal -->
+  <div *ngIf="isAuthenticated && sucursalNombre" class="example-spacer">
+    Sucursal: {{ sucursalNombre }}
+  </div>
+
+  <!--enlaces de la app-->
+  <div class="example-spacer"></div>
+  <div class="example-spacer">
+    <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()" [routerLinkActive]="'link-active'">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <!-- Menu de Usuario -->
+    <span class="mat-caption" *ngIf="isAuthenticated">{{ currentUser?.email }}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu3">
+      <mat-icon [ngStyle]="{'color': isAuthenticated ? '#62E1CA': '#7E9BEF'}">person</mat-icon>
+    </button>
+    <mat-menu #menu3="matMenu">
+      <button mat-menu-item *ngIf="!isAuthenticated">
+        <mat-icon>person_add</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item *ngIf="isAuthenticated">
+        <mat-icon>person_remove</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

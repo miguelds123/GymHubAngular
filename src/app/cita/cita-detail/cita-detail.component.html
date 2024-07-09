@@ -1,0 +1,37 @@
+<div *ngIf="cita" class="detail-container">
+    <h2 class="detail-title">Detalles de la Cita</h2>
+    <div class="detail-section">
+      <mat-card class="detail-card">
+        <mat-card-content>
+          <div class="detail-item">
+            <p><strong>Fecha:</strong> {{ cita.fecha | date:'medium' }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Hora de inicio:</strong> {{ cita.horaInicio | date:'shortTime' }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Hora de fin:</strong> {{ cita.horaFin | date:'shortTime' }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Sucursal:</strong> {{ cita.sucursal }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Servicio:</strong> {{ cita.servicio }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Estado:</strong> {{ cita.estado }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Objetivo de entrenamiento:</strong> {{ cita.objetivoEntrenamiento }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Nivel de experiencia:</strong> {{ cita.nivelExperiencia }}</p>
+          </div>
+          <div class="detail-item">
+            <p><strong>Condiciones médicas:</strong> {{ cita.condicionesMedicas }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

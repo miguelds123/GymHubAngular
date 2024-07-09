@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CitaModule } from './cita/cita.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FacturasModule } from './facturas/facturas.module';
 import { ProductoModule } from './producto/producto.module';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { ProductoModule } from './producto/producto.module';
     UserModule,
     FacturasModule,
     ProductoModule,
+    CitaModule,
     AppRoutingModule,
+    
     
   ],
   providers: [

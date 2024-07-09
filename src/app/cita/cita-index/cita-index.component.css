@@ -1,0 +1,38 @@
+.grid-container {
+  padding: 20px;
+}
+
+.citas-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cita-item {
+  width: calc(25% - 10px); /* Ajusta el ancho de cada elemento según el número de columnas */
+  flex: 1 1 25%; /* Ajusta el tamaño del elemento */
+}
+
+.dashboard-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-card-header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-mini-fab {
+  margin-left: auto; /* Mueve el botón al extremo derecho del encabezado */
+}
+
+.dashboard-card-content {
+  margin-top: 10px;
+}
+
+.mat-card-title,
+.mat-card-subtitle {
+  color: white; /* Cambia el color del texto del encabezado */
+}
