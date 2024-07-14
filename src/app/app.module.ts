@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FacturasModule } from './facturas/facturas.module';
 import { ProductoModule } from './producto/producto.module';
+import { ServicioModule } from './servicio/servicio.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ProductoModule } from './producto/producto.module';
     ProductoModule,
     CitaModule,
     AppRoutingModule,
+    ServicioModule,
     
     
   ],

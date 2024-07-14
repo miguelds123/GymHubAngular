@@ -8,6 +8,7 @@ export const productos = [
       precio: 300000.00,
       peso: 25.00,
       marca: "GymPro",
+      imagen: "MancuernasAjustables.jpg",
     },
     // Producto 2
     {
@@ -18,6 +19,7 @@ export const productos = [
       precio: 60000.00,
       peso: 1.20,
       marca: "YogaFlex",
+      imagen: "TapeteYoga.jpg"
     },
     // Producto 3
     {
@@ -28,6 +30,7 @@ export const productos = [
       precio: 40000.00,
       peso: 1.00,
       marca: "FitnessGear",
+      imagen: "Fitball.jpg"
     },
     // Producto 4
     {
@@ -38,6 +41,7 @@ export const productos = [
       precio: 120000.00,
       peso: 2.00,
       marca: "NutriFit",
+      imagen: "ProteinaWhey.jpg"
     },
     // Producto 5
     {
@@ -48,6 +52,7 @@ export const productos = [
       precio: 50000.00,
       peso: 0.50,
       marca: "PowerSupps",
+      imagen: "creatina.jpg"
     },
     // Producto 6
     {
@@ -58,5 +63,6 @@ export const productos = [
       precio: 40000.00,
       peso: 1.20,
       marca: "ProteinBar",
+      imagen: "BarraProteina.webp"
     }
   ];
