@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FacturasModule } from './facturas/facturas.module';
 import { ProductoModule } from './producto/producto.module';
 import { ServicioModule } from './servicio/servicio.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ServicioModule } from './servicio/servicio.module';
     AppComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     ToastrModule.forRoot(),
@@ -28,10 +30,10 @@ import { ServicioModule } from './servicio/servicio.module';
     HomeModule,
     UserModule,
     FacturasModule,
+    ServicioModule,
     ProductoModule,
     CitaModule,
     AppRoutingModule,
-    ServicioModule,
     
     
   ],

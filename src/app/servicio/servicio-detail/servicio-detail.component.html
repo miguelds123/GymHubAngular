@@ -1,0 +1,34 @@
+<div *ngIf="datos" class="grid-container">
+    <mat-card class="home-card">
+      <mat-card-header>
+        <mat-card-title>{{ datos.nombre }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="home-card-content">
+        <div class="info">
+          <div>
+            <p>{{ datos.descripcion }}</p>
+          </div>
+          <div>
+            <p>Tiempo: {{ datos.tiempo }} minutos</p>
+          </div>
+          <div>
+            <p>Nivel de Dificultad: {{ datos.nivelDificultad }} kg</p>
+          </div>
+          <div>
+            <p>Equipamiento Necesario: {{ datos.equipamientoNecesario }}</p>
+          </div>
+          <div>
+            <p class="price">{{"₡ " + datos.tarifa}}</p>
+          </div>
+        </div>
+        <div class="imagen">
+          <img
+            mat-card-image
+            [src]="'../../assets/images/' + datos.imagen"
+            [alt]="datos.nombre"
+          />
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

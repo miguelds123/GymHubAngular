@@ -17,13 +17,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge'; 
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { ServicioIndexComponent } from './servicio-index/servicio-index.component';
+import { ServicioDetailComponent } from './servicio-detail/servicio-detail.component';
+import { ServicioAllComponent } from './servicio-all/servicio-all.component';
+import { ServicioFormComponent } from './servicio-form/servicio-form.component';
 
 
 @NgModule({
   declarations: [
-    ServicioIndexComponent
+    ServicioIndexComponent,
+    ServicioDetailComponent,
+    ServicioAllComponent,
+    ServicioFormComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +50,8 @@ import { ServicioIndexComponent } from './servicio-index/servicio-index.componen
     MatRadioModule,
     MatChipsModule,
     MatBadgeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ServicioModule { }

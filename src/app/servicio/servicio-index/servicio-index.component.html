@@ -5,14 +5,14 @@
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="full-width">
-          <mat-label>Nombre Producto</mat-label>
+          <mat-label>Nombre Servicio</mat-label>
           <input
             matInput
-            #filtroProducto
+            #filtroServicio
             [(ngModel)]="filtro"
-            (ngModelChange)="buscarProductos()"
+            (ngModelChange)="buscarServicios()"
           />
-          <mat-hint>{{ filtroProducto.value.length }} /20</mat-hint>
+          <mat-hint>{{ filtroServicio.value.length }} /20</mat-hint>
           <button mat-icon-button matSuffix color="primary">
             <mat-icon>search</mat-icon>
           </button>
@@ -21,17 +21,17 @@
     </mat-card>
   
     <mat-grid-list [cols]="4" rowHeight="1:2.1" gutterSize="10px">
-      <mat-grid-tile *ngFor="let producto of filterDatos">
+      <mat-grid-tile *ngFor="let servicio of filterDatos">
         <mat-card class="dashboard-card">
           <mat-card-header class="dashboard-card-header">
-            <mat-card-title>{{ producto.nombre }}</mat-card-title>
+            <mat-card-title>{{ servicio.nombre }}</mat-card-title>
             <mat-card-actions>
               <button
                 mat-mini-fab
                 color="accent"
-                matTooltip="Detalle Producto"
-                aria-label="Detalle Producto"
-                (click)="detalle(producto.id)"
+                matTooltip="Detalle Servicio"
+                aria-label="Detalle Servicio"
+                (click)="detalle(servicio.id)"
               >
                 <mat-icon class="mat-18">info</mat-icon>
               </button>
@@ -39,15 +39,15 @@
             </mat-card-actions>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="price">{{ "₡ " + producto.precio }}</div>
+            <div class="price">{{ "₡ " + servicio.tarifa }}</div>
             <mat-divider inset></mat-divider>
-            <div class="texto">Marca: {{ producto.marca }}</div>
+            <div class="texto">Tiempo: {{ servicio.tiempo }} minutos</div>
           </mat-card-content>
           <div class="imagen">
             <img
               mat-card-image
-              [src]="'../../assets/images/' + producto.imagen"
-              [alt]="producto.nombre"
+              [src]="'../../assets/images/' + servicio.imagen"
+              [alt]="servicio.nombre"
             />
           </div>
         </mat-card>

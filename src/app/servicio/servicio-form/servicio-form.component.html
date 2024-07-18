@@ -1,0 +1,114 @@
+<form [formGroup]="servicioForm" (ngSubmit)="submitservicio()" novalidate>
+  <input type="hidden" formControlName="id" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>{{ titleForm }} Servicio</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="nombre"
+              maxlength="20"
+              placeholder="Nombre"
+            />
+            <mat-error *ngIf="errorHandling('nombre')">
+              {{ errorHandling('nombre') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="descripcion"
+              placeholder="Descripción"
+            />
+            <mat-error *ngIf="errorHandling('descripcion')">
+              {{ errorHandling('descripcion') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="tarifa" placeholder="Tarifa" />
+            <mat-error *ngIf="errorHandling('tarifa')">
+              {{ errorHandling('tarifa') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="tiempo" placeholder="Tiempo" />
+            <mat-error *ngIf="errorHandling('tiempo')">
+              {{ errorHandling('tiempo') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="nivelDificultad" placeholder="Nivel de Dificultad" />
+            <mat-error *ngIf="errorHandling('nivelDificultad')">
+              {{ errorHandling('nivelDificultad') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="equipamientoNecesario" placeholder="Equipamiento Necesario" />
+            <mat-error *ngIf="errorHandling('equipamientoNecesario')">
+              {{ errorHandling('equipamientoNecesario') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-label>Imagen </mat-label>
+          <ng-container *ngIf="isCreate; else elseBlock">
+            <input type="file" accept="image/*" (change)="selectFile($event)" />
+          </ng-container>
+          <ng-template #elseBlock>
+            <img
+              mat-card-image
+              [src]="'http://localhost:3000/images/' + nameImage"
+              alt="Imagen servicio"
+            />
+          </ng-template>
+          <input type="hidden" formControlName="imagen" />
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          Reset
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          Regresar
+        </button>
+        <button mat-raised-button color="accent" type="submit">Guardar</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>
