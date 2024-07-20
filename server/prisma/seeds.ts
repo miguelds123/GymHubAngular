@@ -311,6 +311,78 @@ const main = async () => {
       }
     });
 
+    await prisma.horario.create({
+      data: {
+        sucursal: {
+          connect: {id: 1}
+        },
+        diaSemana: "Lunes",
+        fecha: new Date("2024-07-22"),
+        horaInicio: new Date("2024-07-22T09:00:00"),
+        horaFin: new Date("2024-07-22T18:00:00"),
+      }
+    });
+
+    await prisma.horario.create({
+      data: {
+        sucursal: {
+          connect: {id: 2}
+        },
+        diaSemana: "Martes",
+        fecha: new Date("2024-07-23"),
+        horaInicio: new Date("2024-07-23T09:00:00"),
+        horaFin: new Date("2024-07-23T18:00:00"),
+      }
+    });
+
+    await prisma.horario.create({
+      data: {
+        sucursal: {
+          connect: {id: 3}
+        },
+        diaSemana: "Miercoles",
+        fecha: new Date("2024-07-24"),
+        horaInicio: new Date("2024-07-24T09:00:00"),
+        horaFin: new Date("2024-07-24T18:00:00"),
+      }
+    });
+
+    await prisma.horarioBloqueo.create({
+      data: {
+        sucursal: {
+          connect: {id: 1}
+        },
+        diaSemana: "Lunes",
+        fecha: new Date("2024-07-22"),
+        horaInicio: new Date("2024-07-22T19:00:00"),
+        horaFin: new Date("2024-07-22T23:59:00"),
+      }
+    });
+
+    await prisma.horarioBloqueo.create({
+      data: {
+        sucursal: {
+          connect: {id: 2}
+        },
+        diaSemana: "Martes",
+        fecha: new Date("2024-07-23"),
+        horaInicio: new Date("2024-07-23T19:00:00"),
+        horaFin: new Date("2024-07-23T23:59:00"),
+      }
+    });
+
+    await prisma.horarioBloqueo.create({
+      data: {
+        sucursal: {
+          connect: {id: 3}
+        },
+        diaSemana: "Miercoles",
+        fecha: new Date("2024-07-23"),
+        horaInicio: new Date("2024-07-23T19:00:00"),
+        horaFin: new Date("2024-07-23T23:59:00"),
+      }
+    });
+
   } catch (error) {
     throw error;
   }

@@ -9,6 +9,7 @@ export const servicios = [
       tiempo: 60,
       nivelDificultad: "Intermedio",
       equipamientoNecesario: "Pesas, bandas de resistencia",
+      imagen: "EntrenamientoPersonalizado.jpg",
     },
     // Servicio 2
     {
@@ -19,6 +20,7 @@ export const servicios = [
       tiempo: 45,
       nivelDificultad: "Bajo",
       equipamientoNecesario: "Esterilla de yoga",
+      imagen: "ClaseYoga.jpg",
     },
     // Servicio 3
     {
@@ -29,6 +31,7 @@ export const servicios = [
       tiempo: 30,
       nivelDificultad: "Alto",
       equipamientoNecesario: "Cuerda para saltar, pesas ligeras",
+      imagen: "EntrenamientoHIIT.jpg",
     },
     // Servicio 4
     {
@@ -39,6 +42,7 @@ export const servicios = [
       tiempo: 60,
       nivelDificultad: "N/A",
       equipamientoNecesario: "Mesa de masaje, aceites",
+      imagen: "Masajes.jpg"
     },
     // Servicio 5
     {
@@ -49,5 +53,6 @@ export const servicios = [
       tiempo: 45,
       nivelDificultad: "Bajo",
       equipamientoNecesario: "Equipo de medición, balanza",
+      imagen: "EvaluacionFisica.jpg"
     }
   ];

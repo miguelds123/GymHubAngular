@@ -58,6 +58,7 @@ model Servicio {
   tiempo                Int // Tiempo en minutos
   nivelDificultad       String // Campo adicional relacionado con el tipo de negocio
   equipamientoNecesario String // Campo adicional relacionado con el tipo de negocio
+  imagen                String
   citas                 Cita[]
   DetalleFactura        DetalleFacturaServicios[]
 }
