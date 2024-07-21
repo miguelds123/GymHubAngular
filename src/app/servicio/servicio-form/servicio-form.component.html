@@ -45,21 +45,16 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput formControlName="tiempo" placeholder="Tiempo" />
-            <mat-error *ngIf="errorHandling('tiempo')">
-              {{ errorHandling('tiempo') }}
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput formControlName="nivelDificultad" placeholder="Nivel de Dificultad" />
+            <mat-label>Nivel de Dificultad</mat-label>
+            <mat-select formControlName="nivelDificultad">
+                <mat-option *ngFor="let dificultad of dificultadList" [value]="dificultad.value">
+                    {{ dificultad.viewValue }}
+                </mat-option>
+            </mat-select>
             <mat-error *ngIf="errorHandling('nivelDificultad')">
-              {{ errorHandling('nivelDificultad') }}
+                {{ errorHandling('nivelDificultad') }}
             </mat-error>
-          </mat-form-field>
+        </mat-form-field>
         </div>
       </div>
       <div class="row">
@@ -74,18 +69,12 @@
       </div>
       <div class="row">
         <div class="col">
-          <mat-label>Imagen </mat-label>
-          <ng-container *ngIf="isCreate; else elseBlock">
-            <input type="file" accept="image/*" (change)="selectFile($event)" />
-          </ng-container>
-          <ng-template #elseBlock>
-            <img
-              mat-card-image
-              [src]="'http://localhost:3000/images/' + nameImage"
-              alt="Imagen servicio"
-            />
-          </ng-template>
-          <input type="hidden" formControlName="imagen" />
+          <mat-form-field class="full-width">
+            <input matInput formControlName="tiempo" placeholder="Tiempo en Minutos" />
+            <mat-error *ngIf="errorHandling('tiempo')">
+              {{ errorHandling('tiempo') }}
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
     </mat-card-content>

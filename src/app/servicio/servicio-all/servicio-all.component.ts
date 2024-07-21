@@ -45,6 +45,12 @@ export class ServicioAllComponent {
     });
   }
 
+  actualizarServicios(id: number) {
+    this.router.navigate(['/servicios/update', id], {
+      relativeTo: this.route,
+    });
+  }
+
   detalleServicios(id: number) {
     this.router.navigate(['/servicios', id]);
   }
