@@ -21,12 +21,12 @@ grid-container {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 50%;
+      height: 100%;
       width: 100%;
     }
 
     img{
-      width: 75%;
+      width: 60%;
       align-items: center;
     }
 
@@ -34,8 +34,8 @@ grid-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 75%;
-      height: 75%;
+      width: 80%;
+      height: 80%;
     }
 
     .more-button {
