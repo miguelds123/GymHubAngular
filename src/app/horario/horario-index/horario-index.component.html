@@ -1,0 +1,52 @@
+<div class="grid-container">
+  <div class="comboBox">
+    <p>Seleccione la sucursal cuyos horarios desea consultar</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccionar Sucursal</mat-label>
+      <mat-select
+        [(value)]="selectedSucursal"
+        (selectionChange)="filtrarPorSucursal()"
+      >
+        <mat-option *ngFor="let sucursal of sucursales" [value]="sucursal">
+          {{ sucursal.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-grid-list [cols]="4" rowHeight="1:1" gutterSize="10px">
+    <mat-grid-tile *ngFor="let horario of filterDatos">
+      <mat-card class="dashboard-card">
+        <mat-card-header class="dashboard-card-header" [style.backgroundColor]="getColor(horario.tipo)">
+          <mat-card-title>{{
+            horario.fecha | date : "shortDate"
+          }}</mat-card-title>
+          <mat-card-actions>
+            <button
+              mat-mini-fab
+              color="accent"
+              matTooltip="Detalle Horario"
+              aria-label="Detalle Horario"
+              (click)="detalle(horario.id, horario.tipo)"
+            >
+              <mat-icon class="mat-18">info</mat-icon>
+            </button>
+            <!-- Aquí se elimina la referencia a comprar -->
+          </mat-card-actions>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="texto">{{ horario.sucursal.nombre }}</div>
+          <div class="texto">
+            Tipo: {{ horario.tipo }}
+          </div>
+          <div class="texto">
+            Hora de Inicio: {{ horario.horaInicio | date : "shortTime" : 'GMT' }}
+          </div>
+          <div class="texto">
+            Hora Final: {{ horario.horaFin | date : "shortTime" : 'GMT'}}
+          </div>
+          <mat-divider inset></mat-divider>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

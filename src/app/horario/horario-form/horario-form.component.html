@@ -1,0 +1,107 @@
+<form [formGroup]="horarioForm" (ngSubmit)="submitHorario()" novalidate>
+  <input type="hidden" formControlName="id" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>{{ titleForm }} Horario</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Seleccione si desea crear un Horario o un Bloqueo</p>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo">
+              <mat-option
+                *ngFor="let tipo of tipoList"
+                [value]="tipo.value"
+              >
+                {{ tipo.value }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('tipo')">
+              {{ errorHandling("tipo") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Sucursal</mat-label>
+            <mat-select formControlName="sucursalId">
+              <mat-option
+                *ngFor="let sucursal of sucursalList"
+                [value]="sucursal.id"
+              >
+                {{ sucursal.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('sucursalId')">
+              {{ errorHandling("sucursalId") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Dia Semana</mat-label>
+            <mat-select formControlName="diaSemana">
+              <mat-option
+                *ngFor="let dia of DiaSemanaList"
+                [value]="dia.value"
+              >
+                {{ dia.value }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('diaSemana')">
+              {{ errorHandling("diaSemana") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha" placeholder="Fecha" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="errorHandling('fecha')">
+              {{ errorHandling("fecha") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Hora de Inicio</mat-label>
+            <input matInput type="time" formControlName="horaInicio" placeholder="Hora de Inicio" />
+            <mat-error *ngIf="errorHandling('horaInicio')">
+              {{ errorHandling("horaInicio") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Hora de Inicio</mat-label>
+            <input matInput type="time" formControlName="horaFin" placeholder="Hora de Fin" />
+            <mat-error *ngIf="errorHandling('horaFin')">
+              {{ errorHandling("horaFin") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="example-button-row">
+        <button mat-raised-button color="warn" type="button" (click)="onReset()">
+          Reset
+        </button>
+        <button mat-raised-button color="primary" type="button" (click)="onBack()">
+          Regresar
+        </button>
+        <button mat-raised-button color="accent" type="submit">Guardar</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

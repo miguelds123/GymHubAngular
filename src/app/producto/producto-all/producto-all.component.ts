@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { GenericService } from '../../share/generic.service';
 import { ProductoDiagComponent } from '../producto-diag/producto-diag.component'; // Ajusta el nombre del componente según tu estructura
 import { ProductoDetailComponent } from '../producto-detail/producto-detail.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto-all',
@@ -24,7 +24,7 @@ export class ProductoAllComponent implements AfterViewInit, OnDestroy {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private gService: GenericService, private dialog: MatDialog, private router: Router) {}
+  constructor(private gService: GenericService, private dialog: MatDialog, private router: Router, private route:ActivatedRoute) {}
 
   ngAfterViewInit(): void {
     this.listProductos();
@@ -41,7 +41,16 @@ export class ProductoAllComponent implements AfterViewInit, OnDestroy {
         this.dataSource.paginator = this.paginator;
       });
   }
-
+  crearProducto() {
+    this.router.navigate(['/productos/create'], {
+      relativeTo: this.route,
+    });
+  }
+  actualizarProducto(id: number) {
+    this.router.navigate(['/productos/update', id], {
+      relativeTo: this.route,
+    });
+  }
   detalleProducto(id: number) {
     this.router.navigate(['/productos', id]);
   }

@@ -13,11 +13,15 @@
     <button mat-menu-item [routerLink]="['/facturaAdministrador/1']" routerLinkActive="link-active">Facturas del Administrador</button>
     <button mat-menu-item [routerLink]="['/productos']" routerLinkActive="link-active">Productos</button>
     <button mat-menu-item [routerLink]="['/servicios']" routerLinkActive="link-active">Servicios</button>
+    <button mat-menu-item [routerLink]="['/horarios']" routerLinkActive="link-active">Horarios</button>
   </mat-menu>
 
   <mat-menu #menu2="matMenu">
     <button mat-menu-item [routerLink]="'/productostable'" [routerLinkActive]="'link-active'">Productos</button>
     <button mat-menu-item [routerLink]="'/serviciostable'" [routerLinkActive]="'link-active'">Servicios</button>
+    <button mat-menu-item [routerLink]="'/horariostable'" [routerLinkActive]="'link-active'">Horarios</button>
+    <button mat-menu-item [routerLink]="'/sucursalestable'" [routerLinkActive]="'link-active'">Sucursales</button>
+    <button mat-menu-item [routerLink]="'/encargadostable'" [routerLinkActive]="'link-active'">Asignar Sucursal</button>
   </mat-menu>
 
   <!-- Nombre de la sucursal -->

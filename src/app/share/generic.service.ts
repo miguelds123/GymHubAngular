@@ -38,5 +38,11 @@ export class GenericService {
       objUpdate
     );
   }
+  updateCustom(endpoint: string, objUpdate: any): Observable<any | any[]> {
+    return this.http.put<any | any[]>(
+      this.urlAPI + endpoint,
+      objUpdate
+    );
+  }
 
 }

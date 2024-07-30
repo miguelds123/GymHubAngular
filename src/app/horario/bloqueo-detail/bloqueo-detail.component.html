@@ -1,0 +1,24 @@
+<div *ngIf="datos" class="grid-container">
+    <mat-card class="home-card">
+      <mat-card-header>
+        <mat-card-title>{{ datos.fecha | date:'shortDate' }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="home-card-content">
+        <div class="info">
+          <div>
+            <p>Sucursal {{ datos.sucursal.nombre }}</p>
+          </div>
+          <div>
+            <p>Día de la Semana: {{ datos.diaSemana }}</p>
+          </div>
+          <div>
+            <p>Hora de Inicio: {{ datos.horaInicio | date : "shortTime" : 'GMT' }}</p>
+          </div>
+          <div>
+            <p>Hora Final: {{ datos.horaFin | date:"shortTime" : 'GMT' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

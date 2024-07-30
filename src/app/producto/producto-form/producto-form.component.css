@@ -1,0 +1,43 @@
+/* Estilo general del formulario */
+.shipping-card {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Ajusta la alineación de las filas */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px; /* Espacio entre filas */
+  }
+  
+  /* Ajusta las columnas dentro de las filas */
+  .col {
+    flex: 1;
+    margin-right: 15px; /* Espacio entre columnas */
+  }
+  
+  /* Asegura que los campos del formulario se expandan a lo largo de la columna */
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Ajusta la imagen y su contenedor */
+  .image-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; /* Espacio superior para separar de otros elementos */
+  }
+  
+  .preview-image {
+    max-width: 150px; /* Tamaño ajustado de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+    margin-left: 10px; /* Espacio entre la imagen y el campo de entrada de ruta */
+  }
+  
+  /* Ajusta el padding y el margen de los campos de formulario */
+  mat-form-field {
+    margin: 0;
+  }
+  

@@ -21,14 +21,16 @@ import { ProductoDiagComponent } from './producto-diag/producto-diag.component';
 import { ProductoIndexComponent } from './producto-index/producto-index.component';
 import { ProductoDetailComponent } from './producto-detail/producto-detail.component';
 import { ProductoAllComponent } from './producto-all/producto-all.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { ProductoFormComponent } from './producto-form/producto-form.component';
 
 @NgModule({
   declarations: [
     ProductoDiagComponent,
     ProductoIndexComponent,
     ProductoDetailComponent,
-    ProductoAllComponent
+    ProductoAllComponent,
+    ProductoFormComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { FormsModule } from '@angular/forms';
     MatRadioModule,
     MatChipsModule,
     MatBadgeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductoModule { }

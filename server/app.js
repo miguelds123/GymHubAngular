@@ -21,6 +21,9 @@ const citaRouter = require("./routes/citaRoutes");
 const usuarioRouter = require("./routes/usuarioRoutes");
 const fileRouter = require("./routes/fileRoutes")
 const horarioRouter = require("./routes/horarioRoutes");
+const horarioDetailRouter = require("./routes/horarioDetailRoutes");
+const bloqueoRouter = require("./routes/bloqueoRoutes");
+const bloqueoDetailRouter = require("./routes/bloqueoDetailRoutes");
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -46,6 +49,10 @@ app.use("/cita/", citaRouter)
 app.use("/usuario/", usuarioRouter)
 app.use("/file/", fileRouter)
 app.use("/horario", horarioRouter)
+app.use("/horarioDetail/", horarioDetailRouter)
+app.use("/bloqueo/", bloqueoRouter)
+app.use("/bloqueoDetail", bloqueoDetailRouter)
+
 
 
 //Acceso a las imagenes

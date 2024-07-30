@@ -69,5 +69,9 @@ grid-container {
     text-align: center;
     } 
 
+    mat-grid-list{
+      margin-top: 20px;
+    }
+
 
     

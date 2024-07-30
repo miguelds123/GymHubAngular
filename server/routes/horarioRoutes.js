@@ -3,10 +3,7 @@ const router = express.Router();
 const horarioController = require('../controllers/horarioController');
 
 // Obtener todos los servicios
-router.get('/', horarioController.getAllHorarios);
-
-// Obtener un servicio por su ID
-router.get('/:id', horarioController.getHorarioById);
+router.get('/:id', horarioController.getAllHorarios);
 
 // Crear un nuevo servicio
 router.post('/', horarioController.createHorario);

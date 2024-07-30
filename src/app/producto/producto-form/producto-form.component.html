@@ -1,0 +1,100 @@
+<form [formGroup]="productoForm" (ngSubmit)="submitProducto()" novalidate>
+    <input type="hidden" formControlName="id" />
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>{{ titleForm }} Producto</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="nombre" maxlength="20" placeholder="Nombre" />
+              <mat-error *ngIf="errorHandling('nombre')">
+                {{ errorHandling('nombre') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Descripción</mat-label>
+              <input matInput formControlName="descripcion" placeholder="Descripción" />
+              <mat-error *ngIf="errorHandling('descripcion')">
+                {{ errorHandling('descripcion') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Precio</mat-label>
+              <input matInput formControlName="precio" placeholder="Precio" />
+              <mat-error *ngIf="errorHandling('precio')">
+                {{ errorHandling('precio') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Categoría</mat-label>
+              <input matInput formControlName="categoria" placeholder="Categoría" />
+              <mat-error *ngIf="errorHandling('categoria')">
+                {{ errorHandling('categoria') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Peso</mat-label>
+              <input matInput formControlName="peso" placeholder="Peso" />
+              <mat-error *ngIf="errorHandling('peso')">
+                {{ errorHandling('peso') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Marca</mat-label>
+              <input matInput formControlName="marca" placeholder="Marca" />
+              <mat-error *ngIf="errorHandling('marca')">
+                {{ errorHandling('marca') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Imagen</mat-label>
+              <input matInput formControlName="imagen" placeholder="Ruta de imagen" />
+              <mat-error *ngIf="errorHandling('imagen')">
+                {{ errorHandling('imagen') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row image-container">
+          <div class="col">
+            <ng-container *ngIf="!isCreate && nameImage">
+              <img [src]="'assets/images/' + nameImage" alt="Imagen producto" class="preview-image" />
+            </ng-container>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="example-button-row">
+          <button mat-raised-button color="warn" type="button" (click)="onReset()">Reset</button>
+          <button mat-raised-button color="primary" type="button" (click)="onBack()">Regresar</button>
+          <button mat-raised-button color="accent" type="submit">Guardar</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

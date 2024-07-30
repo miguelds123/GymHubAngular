@@ -1,0 +1,44 @@
+mat-card-header {
+    font-weight: 500;
+    margin-bottom: 30px;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.5em;
+    background-color: #616161;
+    color: white;
+}
+
+.home-card {
+    margin: 10px auto;
+    border-radius: 4px;
+    max-width: 60%;
+    line-height: 1.5em;
+    padding: 1.5em;
+}
+
+.home-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info div {
+    margin-bottom: 10px;
+}
+
+.info p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.price {
+    font-weight: 800;
+    font-size: 2em;
+    margin: 0;
+}

@@ -38,6 +38,17 @@ export const usuarios = [
     sucursalId: 1
   },
 
+  {
+    id: 7,
+    nombre: "Manfred Ugalde",
+    telefono: "555-2222",
+    email: "manfred.ugalde@prueba.com",
+    direccion: "Calle Falsa 123",
+    fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
+    password: "1234",
+    role: Role.ENCARGADO,
+  },
+
   // Usuario 3
   {
     id: 3,

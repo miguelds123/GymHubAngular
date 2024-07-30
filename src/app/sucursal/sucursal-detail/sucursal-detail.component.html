@@ -1,0 +1,24 @@
+<div *ngIf="datos" class="grid-container">
+    <mat-card class="home-card">
+      <mat-card-header>
+        <mat-card-title>{{ datos.nombre }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="home-card-content">
+        <div class="info">
+          <div>
+            <p><strong>Descripción:</strong> {{ datos.descripcion }}</p>
+          </div>
+          <div>
+            <p><strong>Teléfono:</strong> {{ datos.telefono }}</p>
+          </div>
+          <div>
+            <p><strong>Dirección:</strong> {{ datos.direccion }}</p>
+          </div>
+          <div>
+            <p><strong>Email:</strong> {{ datos.email }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

@@ -14,6 +14,8 @@ import { FacturasModule } from './facturas/facturas.module';
 import { ProductoModule } from './producto/producto.module';
 import { ServicioModule } from './servicio/servicio.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HorarioModule } from './horario/horario.module';
+import { SucursalModule } from './sucursal/sucursal.module';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ServicioModule,
     ProductoModule,
     CitaModule,
+    HorarioModule,
+    SucursalModule,
     AppRoutingModule,
     
     

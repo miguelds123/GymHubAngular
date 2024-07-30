@@ -31,22 +31,22 @@ exports.getServicioById = async (req, res, next) => {
 
 // Crear un nuevo servicio
 exports.createServicio = async (req, res, next) => {
-    const { nombre, descripcion, tarifa, tiempo, equipamientoNecesario, nivelDificultad } = req.body;
+    let body=req.body
     try {
         const nuevoServicio = await prisma.servicio.create({
             data: {
-                nombre,
-                descripcion,
-                tarifa,
-                tiempo,
-                equipamientoNecesario,
-                nivelDificultad
+                nombre : body.nombre,
+                descripcion : body.descripcion,
+                tarifa : body.tarifa,
+                tiempo : body.tiempo,
+                equipamientoNecesario : body.equipamientoNecesario,
+                nivelDificultad : body.nivelDificultad,
+                imagen : body.imagen
             }
         });
-        res.status(201).json(nuevoServicio);
+        res.json(nuevoServicio)
     } catch (error) {
         console.error("Error al crear el servicio:", error);
-        res.status(500).json({ error: "Error interno del servidor" });
     }
 };
 
@@ -55,7 +55,7 @@ exports.updateServicio = async (req, res, next) => {
     const id = parseInt(req.params.id);
     const { nombre, descripcion, tarifa, tiempo, equipamientoNecesario, nivelDificultad } = req.body;
     try {
-        const servicioActualizado = await prisma.producto.update({
+        const servicioActualizado = await prisma.servicio.update({
             where: { id },
             data: {
                 nombre,

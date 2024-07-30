@@ -1,0 +1,77 @@
+<mat-card-header>
+  <mat-card-title>Horario</mat-card-title>
+  <mat-card-subtitle>
+    <a mat-mini-fab matTooltip="Crear Horario" aria-label="Crear Horario" color="primary" (click)="crearServicio()">
+      <mat-icon>add</mat-icon>
+    </a>
+  </mat-card-subtitle>
+</mat-card-header>
+
+<div class="comboBox">
+  <p>Seleccione la sucursal cuyos horarios desea consultar</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccionar Sucursal</mat-label>
+    <mat-select [(value)]="selectedSucursal" (selectionChange)="filtrarPorSucursal()">
+      <mat-option *ngFor="let sucursal of sucursales" [value]="sucursal">
+        {{ sucursal.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- Table -->
+<table mat-table [dataSource]="dataSource" class="full-width-table" matSort matSortStart="desc" aria-label="Elements">
+  <ng-container matColumnDef="tipo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+    <td mat-cell *matCellDef="let row">{{ row.tipo }}</td>
+  </ng-container>
+  <!-- Columna sucursal -->
+  <ng-container matColumnDef="sucursal">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sucursal</th>
+    <td mat-cell *matCellDef="let row">{{ row.sucursal.nombre }}</td>
+  </ng-container>
+  
+  <!-- Columna diaSemana -->
+  <ng-container matColumnDef="diaSemana">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Dia de la Semana</th>
+    <td mat-cell *matCellDef="let row">{{ row.diaSemana }}</td>
+  </ng-container>
+
+  <!-- Columna fecha -->
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+    <td mat-cell *matCellDef="let row">{{ row.fecha | date:'shortDate' }}</td>
+  </ng-container>
+
+  <!-- Columna horaInicio -->
+  <ng-container matColumnDef="horaInicio">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Inicio</th>
+    <td mat-cell *matCellDef="let row">{{ row.horaInicio | date:'shortTime':'GMT' }}</td>
+  </ng-container>
+
+  <!-- Columna horaFin -->
+  <ng-container matColumnDef="horaFin">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Fin</th>
+    <td mat-cell *matCellDef="let row">{{ row.horaFin | date:'shortTime':'GMT' }}</td>
+  </ng-container>
+  
+  <!-- Columna acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let row">
+      <button mat-mini-fab matTooltip="Actualizar Servicio" aria-label="Actualizar Servicio" color="primary" (click)="actualizarServicios(row.id)">
+        <mat-icon class="mat-18">edit</mat-icon>
+      </button>
+      <button mat-mini-fab matTooltip="Detalle Servicio" aria-label="Detalle Servicio" color="primary" (click)="detalleServicios(row.id, row.tipo)">
+        <mat-icon class="mat-18">info</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  
+  <!-- Definición de filas -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<!-- Paginator -->
+<mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]" aria-label="Seleccione una página"></mat-paginator>

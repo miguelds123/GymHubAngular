@@ -23,7 +23,7 @@ grid-container {
   .dashboard-card {
     display: flex;
       flex-direction: column;
-      height: 28%;
+      height: 60%;
       width: 100%;
   }
   .more-button {

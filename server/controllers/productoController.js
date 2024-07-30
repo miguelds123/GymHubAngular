@@ -31,24 +31,25 @@ exports.getProductoById = async (req, res, next) => {
 
 // Crear un nuevo producto
 exports.createProducto = async (req, res, next) => {
-    const { nombre, descripcion, categoria, precio, peso, marca } = req.body;
+    const { nombre, descripcion, categoria, precio, peso, marca, imagen } = req.body;
     try {
-        const nuevoProducto = await prisma.producto.create({
-            data: {
-                nombre,
-                descripcion,
-                categoria,
-                precio,
-                peso,
-                marca
-            }
-        });
-        res.status(201).json(nuevoProducto);
+      const nuevoProducto = await prisma.producto.create({
+        data: {
+          nombre,
+          descripcion,
+          categoria,
+          precio , // Asegúrate de que el precio se esté manejando como un número
+          peso, // Asegúrate de que el peso se esté manejando como un número
+          marca,
+          imagen
+        }
+      });
+      res.status(201).json(nuevoProducto);
     } catch (error) {
-        console.error("Error al crear el producto:", error);
-        res.status(500).json({ error: "Error interno del servidor" });
+      console.error("Error al crear el producto:", error);
+      res.status(500).json({ error: "Error interno del servidor" });
     }
-};
+  };
 
 // Actualizar un producto existente
 exports.updateProducto = async (req, res, next) => {
