@@ -40,6 +40,3 @@ exports.getInformacionReserva = async (req, res, next) => {
     }
 };
 
-// Ejemplo de uso en una ruta:
-// GET /reserva/:idCita
-// Retorna toda la información de la reserva según el ID de la cita

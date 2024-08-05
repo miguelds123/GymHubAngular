@@ -28,7 +28,7 @@ export class CitaIndexComponent implements OnInit {
 
   // Método para obtener las citas por usuario usando el GenericService
   listarCitasPorUsuario(usuarioId: number) {
-    this.genericService.get("sucursal", usuarioId)
+    this.genericService.get("citabyusuario", usuarioId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((respuesta: any) => {
         console.log(respuesta);

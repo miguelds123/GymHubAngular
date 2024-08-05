@@ -1,5 +1,7 @@
 const dotEnv = require("dotenv");
 const express = require("express");
+const cron = require('node-cron');
+const { sendNotification } = require('./middleware/notificationService');
 const { PrismaClient } = require("@prisma/client");
 const { request, response } = require("express");
 const cors = require("cors");
@@ -24,6 +26,7 @@ const horarioRouter = require("./routes/horarioRoutes");
 const horarioDetailRouter = require("./routes/horarioDetailRoutes");
 const bloqueoRouter = require("./routes/bloqueoRoutes");
 const bloqueoDetailRouter = require("./routes/bloqueoDetailRoutes");
+const citabyusuarioRouter = require("./routes/citabyusuarioRoutes")
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -52,7 +55,7 @@ app.use("/horario", horarioRouter)
 app.use("/horarioDetail/", horarioDetailRouter)
 app.use("/bloqueo/", bloqueoRouter)
 app.use("/bloqueoDetail", bloqueoDetailRouter)
-
+app.use("/citabyusuario/", citabyusuarioRouter)
 
 
 //Acceso a las imagenes
@@ -63,3 +66,14 @@ app.listen(port, () => {
 console.log(`http://localhost:${port}`);
 console.log("Presione CTRL-C para deternerlo\n");
 });
+
+// Configurar cron job para ejecutarse diariamente a una hora específica (por ejemplo, a la medianoche)
+//cron.schedule('* * * * *', () => {
+//    console.log('Ejecutando tarea programada...');
+//    try {
+//        //sendNotification();
+//    }
+//    catch (error){
+//       console.log(error)
+//    }
+//});

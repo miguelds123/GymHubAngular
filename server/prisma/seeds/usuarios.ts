@@ -76,7 +76,7 @@ export const usuarios = [
     id: 5,
     nombre: "Laura Fernández",
     telefono: "555-5555",
-    email: "laura.fernandez@prueba.com",
+    email: "mdsantamaria02@gmail.com",
     direccion: "Calle Estrella 123",
     fechaNacimiento: new Date("1990-09-09T00:00:00.000Z"),
     password: "1234",

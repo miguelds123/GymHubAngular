@@ -121,8 +121,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-01"),
-        horaInicio: new Date("2024-07-01T09:00:00"),
-        horaFin: new Date("2024-07-01T10:00:00"),
+        horaInicio: new Date("2024-07-01T09:00:00Z"),
+        horaFin: new Date("2024-07-01T10:00:00Z"),
         estado: "CONFIRMADA",
         sucursal: {
           connect: { id: 1 }
@@ -142,8 +142,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-02"),
-        horaInicio: new Date("2024-07-02T10:00:00"),
-        horaFin: new Date("2024-07-02T11:00:00"),
+        horaInicio: new Date("2024-07-02T10:00:00Z"),
+        horaFin: new Date("2024-07-02T11:00:00Z"),
         estado: "REPROGRAMADA",
         sucursal: {
           connect: { id: 1 }
@@ -163,8 +163,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-03"),
-        horaInicio: new Date("2024-07-03T11:00:00"),
-        horaFin: new Date("2024-07-03T12:00:00"),
+        horaInicio: new Date("2024-07-03T11:00:00Z"),
+        horaFin: new Date("2024-07-03T12:00:00Z"),
         estado: "CONFIRMADA",
         sucursal: {
           connect: { id: 1 }
@@ -186,8 +186,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-01"),
-        horaInicio: new Date("2024-07-01T12:00:00"),
-        horaFin: new Date("2024-07-01T13:00:00"),
+        horaInicio: new Date("2024-07-01T12:00:00Z"),
+        horaFin: new Date("2024-07-01T13:00:00Z"),
         estado: "CONFIRMADA",
         sucursal: {
           connect: { id: 2 }
@@ -207,8 +207,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-02"),
-        horaInicio: new Date("2024-07-02T13:00:00"),
-        horaFin: new Date("2024-07-02T14:00:00"),
+        horaInicio: new Date("2024-07-02T13:00:00Z"),
+        horaFin: new Date("2024-07-02T14:00:00Z"),
         estado: "CANCELADA",
         sucursal: {
           connect: { id: 2 }
@@ -228,8 +228,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-03"),
-        horaInicio: new Date("2024-07-03T15:00:00"),
-        horaFin: new Date("2024-07-03T16:00:00"),
+        horaInicio: new Date("2024-07-03T15:00:00Z"),
+        horaFin: new Date("2024-07-03T16:00:00Z"),
         estado: "CONFIRMADA",
         sucursal: {
           connect: { id: 2 }
@@ -251,8 +251,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-01"),
-        horaInicio: new Date("2024-07-01T16:00:00"),
-        horaFin: new Date("2024-07-01T17:00:00"),
+        horaInicio: new Date("2024-07-01T16:00:00Z"),
+        horaFin: new Date("2024-07-01T17:00:00Z"),
         estado: "CONFIRMADA",
         sucursal: {
           connect: { id: 5 }
@@ -272,8 +272,8 @@ const main = async () => {
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-02"),
-        horaInicio: new Date("2024-06-23T17:00:00"),
-        horaFin: new Date("2024-06-23T18:00:00"),
+        horaInicio: new Date("2024-06-23T17:00:00Z"),
+        horaFin: new Date("2024-06-23T18:00:00Z"),
         estado: "COMPLETADA",
         sucursal: {
           connect: { id: 5 }
@@ -292,9 +292,9 @@ const main = async () => {
 
     await prisma.cita.create({
       data: {
-        fecha: new Date("2024-07-03"),
-        horaInicio: new Date("2024-07-03T18:00:00"),
-        horaFin: new Date("2024-07-03T19:00:00"),
+        fecha: new Date("2024-08-01"),
+        horaInicio: new Date("2024-07-31T18:00:00Z"),
+        horaFin: new Date("2024-07-31T19:00:00Z"),
         estado: "CONFIRMADA",
         sucursal: {
           connect: { id: 5 }
