@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from '../../share/generic.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../share/cart.service';
+import { NotificacionService, TipoMessage } from '../../share/notification.service';
 
 @Component({
   selector: 'app-servicio-index',
@@ -16,7 +18,9 @@ export class ServicioIndexComponent {
 
   constructor(
     private gService: GenericService, // Inyección del servicio GenericService
-    private router: Router
+    private router: Router,
+    private cartService: CartService,
+    private noti:NotificacionService,
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +45,20 @@ export class ServicioIndexComponent {
 
   detalle(id: number) {
     this.router.navigate(['/servicios', id]); // Navegación a la vista de detalle de producto
+  }
+
+  comprar(id:number){
+    this.gService.get("servicio/",id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((respuesta:any)=>{
+      //Agregarlo a la compra
+      this.cartService.addToCart(respuesta)
+      this.noti.mensaje(
+        'Orden',
+        'Servicio '+respuesta.nombre+' agregado a la orden',
+        TipoMessage.success
+      )
+    })
   }
 
   buscarServicios() {

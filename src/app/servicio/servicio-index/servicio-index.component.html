@@ -35,6 +35,16 @@
               >
                 <mat-icon class="mat-18">info</mat-icon>
               </button>
+              <button
+            mat-mini-fab
+            color="accent"
+            matTooltip="Comprar"
+            aria-label="Comprar"
+            color="primary"
+            (click)="comprar(servicio.id)"
+          >
+            <mat-icon class="mat-18">add_shopping_cart</mat-icon>
+          </button>
               <!-- Aquí se elimina la referencia a comprar -->
             </mat-card-actions>
           </mat-card-header>

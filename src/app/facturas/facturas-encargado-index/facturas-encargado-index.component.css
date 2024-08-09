@@ -2,6 +2,10 @@ grid-container {
     margin: 20px;
   }
 
+  .grid-container{
+    margin: 20px;
+  }
+
   mat-card-title{
     font-size: 17px;
   }
@@ -23,7 +27,7 @@ grid-container {
   .dashboard-card {
     display: flex;
       flex-direction: column;
-      height: 60%;
+      height: 65%;
       width: 100%;
   }
   .more-button {
@@ -57,7 +61,5 @@ grid-container {
     text-align: center;
   }
 
-  h2{
-    margin-left: 20px;
-  }
+
   

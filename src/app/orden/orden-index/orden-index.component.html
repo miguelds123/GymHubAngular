@@ -1,0 +1,125 @@
+
+
+<mat-card class="box">
+  <mat-card-content>
+    <div class="encabezado">
+
+      <div class="primeraParte">
+        <div class="logoInfo">
+          <div>
+            <img mat-card-image [src]="'../../assets/images/logoGymHub.png'" />
+          </div>
+          <div class="textoPrimeraParte">
+            <div>
+              <h2>FitHub</h2>
+            </div>
+            <div>
+              <p>Dirección: Avenida Central, Calle 15, Alajuela</p>
+            </div>
+            <div>
+              <p>Teléfono: +506 9999-9999</p>
+            </div>
+            <div>
+              <p>Correo: infofithub.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="infoOrden">
+          <div class="contenido">
+            <h2>Orden de Compra</h2>
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Buscar Cliente</mat-label>
+              <input type="text" placeholder="Buscar Cliente" aria-label="Cliente" matInput [formControl]="clienteControl" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onClienteSelected($event)">
+                <mat-option *ngFor="let cliente of filteredClientes | async" [value]="cliente">
+                  {{ cliente.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <div>
+              <p>Fecha: {{fechaHoy | date: 'dd/MM/yyyy'}}</p>
+            </div>
+            <div *ngIf="selectedCliente">
+              <p>Cliente: {{ selectedCliente.nombre }}</p>
+            </div>
+            <div *ngIf="encargado">
+              <p>Sucursal: {{encargado.Sucursal.nombre}}</p>
+            </div>
+            <div *ngIf="encargado">
+              <p>Encargado: {{encargado.nombre}}</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="box">
+  <mat-card-content *ngIf="dataSource">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="producto">
+        <mat-header-cell *matHeaderCellDef> Producto </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.product.nombre }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="precio">
+        <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+        <mat-cell *matCellDef="let element"> ₡ {{ element.precio }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-form-field appearance="fill">
+            <input
+              matInput
+              id="cantidad"
+              [(ngModel)]="element.cantidad"
+              (ngModelChange)="actualizarCantidad(element)"
+              type="number"
+            />
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="impuesto">
+        <mat-header-cell *matHeaderCellDef> Impuesto </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          ₡ {{ element.impuesto }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="subtotal">
+        <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          ₡ {{ element.subtotal }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="eliminarItem(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <p class="Total">Total: ₡{{ total }}</p>
+    <button mat-flat-button color="accent" (click)="registrarOrden()">
+      Comprar
+      <mat-icon>shopping_bag</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

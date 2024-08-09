@@ -32,9 +32,11 @@
   <!--enlaces de la app-->
   <div class="example-spacer"></div>
   <div class="example-spacer">
-    <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()" [routerLinkActive]="'link-active'">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
+    <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()"
+   [routerLink]="'/orden'"  
+   [routerLinkActive]="'link-active'">
+     <mat-icon>shopping_cart</mat-icon>
+   </button>
     <!-- Menu de Usuario -->
     <span class="mat-caption" *ngIf="isAuthenticated">{{ currentUser?.email }}</span>
     <button mat-icon-button [matMenuTriggerFor]="menu3">

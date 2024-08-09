@@ -20,6 +20,11 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FacturasEncargadoIndexComponent } from './facturas-encargado-index/facturas-encargado-index.component';
 import {FacturaDetailComponent} from "./facturas-encargado-detail/facturas-encargado-detail.component";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -46,6 +51,11 @@ import {FacturaDetailComponent} from "./facturas-encargado-detail/facturas-encar
     MatChipsModule,
     MatBadgeModule,
     MatFormFieldModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
   ]
 })
 export class FacturasModule { }

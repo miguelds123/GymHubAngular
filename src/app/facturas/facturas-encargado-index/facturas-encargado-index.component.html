@@ -1,33 +1,58 @@
 <div class="grid-container">
-    <mat-grid-list [cols]="4" rowHeight="1:1" gutterSize="10px">
-      <h2>Facturas Administrador</h2>
-      @for (item of datos; track item.id) {
-      <mat-grid-tile>
-        <mat-card class="dashboard-card">
-          <mat-card-header class="dashboard-card-header">
-            <mat-card-title>{{ item.fecha }}</mat-card-title>
-            <mat-card-actions>
-              <button
-                mat-mini-fab
-                color="accent"
-                matTooltip="Detalle Videjuego"
-                aria-label="Detalle Videjuego"
-                color="primary"
-                (click)="detalle(item.id)" 
-              >
-                <mat-icon class="mat-18">info</mat-icon>
-              </button>
-            </mat-card-actions>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div class="price">{{ "₡ " + item.total }}</div>
-            <mat-divider inset></mat-divider>
-            <div class="texto">Nombre del Cliente: {{item.cliente.nombre}}</div>
-            <div class="texto">Sucursal: {{item.sucursal.nombre}}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      }
-    </mat-grid-list>
+  <div class="comboBox">
+    <mat-form-field appearance="fill">
+      <mat-label>Filtrar por Cliente</mat-label>
+      <mat-select
+        [(value)]="filtroCliente"
+        (selectionChange)="buscarFacturasCliente()"
+      >
+        <mat-option *ngFor="let cliente of clientes" [value]="cliente.cliente.id">
+          {{ cliente.cliente.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  
+
+  <div class="comboBox">
+    <mat-form-field appearance="fill">
+      <mat-label>Filtrar por Fecha</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="filtroFecha" (dateChange)="buscarFacturasCliente()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-grid-list [cols]="4" rowHeight="1:1" gutterSize="10px">
+    <h2>Facturas Administrador</h2>
+    @for (item of filterDatos; track item.id) {
+    <mat-grid-tile>
+      <mat-card class="dashboard-card">
+        <mat-card-header class="dashboard-card-header">
+          <mat-card-title>{{ item.fecha }}</mat-card-title>
+          <mat-card-actions>
+            <button
+              mat-mini-fab
+              color="accent"
+              matTooltip="Detalle Videjuego"
+              aria-label="Detalle Videjuego"
+              color="primary"
+              (click)="detalle(item.id)"
+            >
+              <mat-icon class="mat-18">info</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="price">{{ "₡ " + item.total }}</div>
+          <mat-divider inset></mat-divider>
+          <div class="texto">Nombre del Cliente: {{ item.cliente.nombre }}</div>
+          <div class="texto">Sucursal: {{ item.sucursal.nombre }}</div>
+          <div class="texto">
+            Tipo: {{ item.estado ? "Factura" : "Proforma" }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>

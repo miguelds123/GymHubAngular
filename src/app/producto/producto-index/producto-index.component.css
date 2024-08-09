@@ -2,6 +2,10 @@ grid-container {
     margin: 20px;
     }
 
+    .grid-container{
+      margin: 20px;
+    }
+
     mat-divider{
         margin-top: 20px;
         margin-bottom: 20px;

@@ -7,6 +7,10 @@ grid-container {
         margin-bottom: 20px;
         align-items: center;
       }
+
+      .grid-container{
+        margin: 20px;
+      }
     
       .texto{
         margin-bottom: 20px;
