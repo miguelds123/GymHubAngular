@@ -74,3 +74,62 @@ exports.liberarEncargado = async (req, res, next) => {
         res.status(500).json({ error: "Error interno del servidor" });
     }
 };
+
+exports.usuarioConFacturasSucursal = async (req, res, next) => {
+    let idEncargadoId = parseInt(req.params.idEncargadoId);
+
+    // Obtener el sucursalId del usuario especificado
+    const usuario = await prisma.usuario.findUnique({
+        where: { id: idEncargadoId },
+        select: { sucursalId: true }
+    });
+
+    if (!usuario || !usuario.sucursalId) {
+        return response.status(404).json({ error: 'Usuario no encontrado o no tiene una sucursal asignada' });
+    }
+
+    console.log(idEncargadoId)
+    try {
+        const horario = await prisma.factura.findMany({
+            include: {
+               cliente : true
+            },
+            where: {
+                sucursalId : usuario.sucursalId
+            }
+        });
+        res.json(horario);
+    } catch (error) {
+        console.error("Error al obtener los horarios:", error);
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+}
+
+exports.getAllUsuarios = async (req, res, next) => {
+    try {
+        const usuarios = await prisma.usuario.findMany();
+        res.json(usuarios);
+    } catch (error) {
+        console.error("Error al obtener los usuarios:", error);
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+};
+
+exports.getUsuarioById = async (req, res, next) => {
+    const id = parseInt(req.params.id);
+    try {
+        const usuario = await prisma.usuario.findUnique({
+            where: { id },
+            include: {
+                Sucursal: true
+            }
+        });
+        if (!usuario) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+        res.json(usuario);
+    } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+};

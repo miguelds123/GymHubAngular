@@ -4,10 +4,14 @@ const usuarioController = require('../controllers/usuarioController');
 
 // Ruta para obtener un usuario por su correo electrónico
 
+router.get("/usuarioFactura/:idEncargadoId", usuarioController.usuarioConFacturasSucursal)
 router.get('/email/:email', usuarioController.getUsuarioByEmail);
 router.get('/', usuarioController.obtenerTodosEncargados);
+router.get("/all", usuarioController.getAllUsuarios)
 router.put('/asignar',usuarioController.asignarSucursal);
+router.get("/:id", usuarioController.getUsuarioById)
 router.put('/liberar/:id', usuarioController.liberarEncargado);
+
 
 module.exports = router;
 

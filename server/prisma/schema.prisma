@@ -148,7 +148,7 @@ model Factura {
 model DetalleFacturaProductos {
   facturaId  Int
   factura    Factura  @relation(fields: [facturaId], references: [id])
-  idDetalle  Int
+  idDetalle  Int      
   productoId Int
   producto   Producto @relation(fields: [productoId], references: [id])
   cantidad   Int
