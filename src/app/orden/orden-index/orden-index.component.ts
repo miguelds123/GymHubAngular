@@ -6,7 +6,7 @@ import { GenericService } from '../../share/generic.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
-import { servicios } from '../../../../server/prisma/seeds/servicios';
+
 
 @Component({
   selector: 'app-orden-index',

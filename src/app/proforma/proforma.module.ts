@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CitaRoutingModule } from './cita-routing.module';
+
+import { ProformaRoutingModule } from './proforma-routing.module';
+import { ProformaAllComponent } from './proforma-all/proforma-all.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
@@ -19,26 +21,20 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; 
-import { CitaIndexComponent } from './cita-index/cita-index.component';
-import { CitaDetailComponent } from './cita-detail/cita-detail.component';
-import { CitaAllComponent } from './cita-all/cita-all.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CitaFormComponent } from './cita-form/cita-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ProformaDetailComponent } from './proforma-detail/proforma-detail.component';
 
 
 @NgModule({
   declarations: [
-    CitaIndexComponent,
-    CitaDetailComponent,
-    CitaAllComponent,
-    CitaFormComponent,
-
+    ProformaAllComponent,
+    ProformaDetailComponent
   ],
   imports: [
     CommonModule,
-    CitaRoutingModule,
+    ProformaRoutingModule,
+    CommonModule,
     MatGridListModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -59,8 +55,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
-    
   ]
 })
-export class CitaModule { }
+export class ProformaModule { }

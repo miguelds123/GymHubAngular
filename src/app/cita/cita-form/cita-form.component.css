@@ -1,0 +1,50 @@
+.shipping-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.example-button-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-card-title {
+  font-size: 1.5rem;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.col {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-button-wrapper {
+  white-space: nowrap;
+}
+
+.mat-card {
+  margin-bottom: 20px;
+}
+.estado-color-display {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

@@ -1,22 +1,42 @@
-.detail-container {
-    margin: 20px;
-  }
-  
-  .detail-title {
-    color: #333;
-  }
-  
-  .detail-section {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .detail-card {
-    width: 400px;
-    max-width: 100%;
-  }
-  
-  .detail-item {
-    margin-bottom: 10px;
-  }
-  
+.cita-detail-container {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.cita-detail-card {
+  padding: 20px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.detail-row mat-icon {
+  margin-right: 10px;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  font-size: 1.1rem;
+  color: #757575;
+}
+
+mat-card-content p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  margin: 5px;
+}

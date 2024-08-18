@@ -1,0 +1,94 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+  
+  .filter-card {
+    margin-bottom: 20px;
+  }
+  
+  .cita-historial {
+    margin-top: 10px;
+  }
+  
+  .cita-item {
+    margin-bottom: 10px;
+  }
+  
+  .cita-card {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: #fff; /* Fondo blanco por defecto */
+    color: #000; /* Texto negro por defecto */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cita-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .cita-titulo {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .cita-acciones button {
+    margin-left: 8px;
+  }
+  
+  .cita-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .cita-info {
+    margin-bottom: 8px;
+  }
+  
+  .estado-container {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .estado-indicador {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .estado-text {
+    font-size: 14px;
+  }
+  
+  /* Ajuste de colores de estado */
+  .estado-pendiente .estado-indicador {
+    background-color: #ffeb3b; /* Amarillo */
+  }
+  
+  .estado-confirmada .estado-indicador {
+    background-color: #4caf50; /* Verde */
+  }
+  
+  .estado-cancelada .estado-indicador {
+    background-color: #f44336; /* Rojo */
+  }
+  
+  .estado-reprogramada .estado-indicador {
+    background-color: #fff; /* Blanco */
+    border: 1px solid #000; /* Borde negro para resaltar el blanco */
+  }
+  
+  .estado-completada .estado-indicador {
+    background-color: #9e9e9e; /* Gris */
+  }
+  

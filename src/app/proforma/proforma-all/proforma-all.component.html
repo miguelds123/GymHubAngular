@@ -1,0 +1,29 @@
+<div class="main-container">
+  
+    <div class="cita-historial">
+      <div *ngFor="let cita of datos" class="cita-item">
+        <mat-card class="cita-card">
+          <mat-card-header>
+            <div class="cita-header">
+              <div class="cita-titulo">{{ cita.servicio.nombre || 'Sin asignar' }}</div>
+              <div class="cita-acciones">
+                <button mat-raised-button color="primary" (click)="detalle(cita.id)">
+                  Ver Detalle
+                </button>
+              </div>            
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="cita-body">
+              <div class="cita-info">
+                <div><strong>ID:</strong> {{ cita.id }}</div>
+                <div><strong>Fecha:</strong> {{ cita.createdAt | date: 'shortDate' }}</div>
+                <div><strong>Usuario:</strong> {{ cita.cliente.nombre || 'Sin asignar' }}</div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

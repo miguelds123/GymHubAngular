@@ -116,8 +116,6 @@ const main = async () => {
       },
     });
 
-    //Citas para sucursal 1
-
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-01"),
@@ -133,12 +131,13 @@ const main = async () => {
         servicio: {
           connect: { id: 1 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Mejorar condición física",
         nivelExperiencia: "Intermedio",
         condicionesMedicas: "Ninguna"
       }
     });
-
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-02"),
@@ -154,12 +153,13 @@ const main = async () => {
         servicio: {
           connect: { id: 2 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Perder peso",
         nivelExperiencia: "Principiante",
         condicionesMedicas: "Asma"
       }
     });
-
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-03"),
@@ -175,14 +175,15 @@ const main = async () => {
         servicio: {
           connect: { id: 3 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Aumentar masa muscular",
         nivelExperiencia: "Avanzado",
         condicionesMedicas: "Ninguna"
       }
     });
-
-    //citas sucursal 2
-
+    
+    // Citas para sucursal 2
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-01"),
@@ -198,12 +199,13 @@ const main = async () => {
         servicio: {
           connect: { id: 2 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Flexibilidad",
         nivelExperiencia: "Intermedio",
         condicionesMedicas: "Ninguna"
       }
     });
-
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-02"),
@@ -219,12 +221,13 @@ const main = async () => {
         servicio: {
           connect: { id: 5 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Mejorar condición física",
         nivelExperiencia: "Principiante",
         condicionesMedicas: "Asma"
       }
     });
-
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-03"),
@@ -238,16 +241,17 @@ const main = async () => {
           connect: { id: 3 }
         },
         servicio: {
-          connect: { id:3 }
+          connect: { id: 3 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Aumentar masa muscular",
         nivelExperiencia: "Avanzado",
         condicionesMedicas: "Diabetes"
       }
     });
-
-    // citas sucursal 5
-
+    
+    // Citas para sucursal 5
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-01"),
@@ -263,12 +267,13 @@ const main = async () => {
         servicio: {
           connect: { id: 1 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Mejorar resistencia",
         nivelExperiencia: "Intermedio",
         condicionesMedicas: "Hipertensión"
       }
     });
-
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-07-02"),
@@ -284,12 +289,13 @@ const main = async () => {
         servicio: {
           connect: { id: 2 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Perder peso",
         nivelExperiencia: "Principiante",
         condicionesMedicas: "Ninguna"
       }
     });
-
+    
     await prisma.cita.create({
       data: {
         fecha: new Date("2024-08-01"),
@@ -305,12 +311,12 @@ const main = async () => {
         servicio: {
           connect: { id: 3 }
         },
+        encargadoId: 1,  // Añadido el campo encargadoId
         objetivoEntrenamiento: "Aumentar masa muscular",
         nivelExperiencia: "Avanzado",
         condicionesMedicas: "Ninguna"
       }
     });
-
     await prisma.horario.create({
       data: {
         sucursal: {

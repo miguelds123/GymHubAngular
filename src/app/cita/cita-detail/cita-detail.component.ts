@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,11 +9,13 @@ import { GenericService } from '../../share/generic.service'; // Ajusta la ruta 
   templateUrl: './cita-detail.component.html',
   styleUrls: ['./cita-detail.component.css'],
 })
-export class CitaDetailComponent implements OnDestroy {
-  cita: any; // Aquí puedes definir una interfaz o tipo más específico según la estructura de tu API
+export class CitaDetailComponent implements OnInit, OnDestroy {
+  datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private genericService: GenericService, private route: ActivatedRoute) {
+  constructor(private gService: GenericService, private route: ActivatedRoute) {}
+
+  ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
     if (id && !isNaN(Number(id))) {
       this.obtenerCita(Number(id));
@@ -21,13 +23,13 @@ export class CitaDetailComponent implements OnDestroy {
   }
 
   obtenerCita(id: number) {
-    this.genericService
-      .get('cita', id)
+    this.gService
+      .get('cita', id) // Ajusta la ruta según tu servicio de API
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data: any) => {
           console.log(data);
-          this.cita = data; // Asignar los datos de la cita obtenidos del servicio
+          this.datos = data;
         },
         (error) => {
           console.error('Error obteniendo cita:', error);
@@ -35,6 +37,20 @@ export class CitaDetailComponent implements OnDestroy {
         }
       );
   }
+
+  getColorByEstado(estado: string): string {
+    switch (estado) {
+      case 'PENDIENTE':
+        return 'yellow';
+      case 'CONFIRMADA':
+        return 'green';
+      case 'CANCELADA':
+        return 'red';
+      default:
+        return 'gray';
+    }
+  }
+
 
   ngOnDestroy() {
     this.destroy$.next(true);

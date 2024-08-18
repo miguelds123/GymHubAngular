@@ -1,0 +1,62 @@
+<div class="main-container">
+  <mat-card class="filter-card">
+    <mat-card-header>
+      <mat-card-title>Citas</mat-card-title>
+      <button mat-raised-button color="primary" (click)="crearCita()">Crear Cita</button>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-label>Nombre Cliente</mat-label>
+        <input
+          matInput
+          [(ngModel)]="filtroCliente"
+          (ngModelChange)="buscarCitas()"
+        />
+        <mat-hint>{{ filtroCliente?.length || 0 }} /20</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Fecha</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [(ngModel)]="filtroFecha"
+          (ngModelChange)="buscarCitas()"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="cita-historial">
+    <div *ngFor="let cita of filterDatos" class="cita-item">
+      <mat-card class="cita-card" [ngClass]="getEstadoClass(cita.estado)">
+        <mat-card-header>
+          <div class="cita-header">
+            <div class="cita-titulo">{{ cita.cliente || 'Sin asignar' }}</div>
+            <div class="cita-acciones">
+              <button mat-raised-button color="primary" (click)="detalle(cita.id)">
+                Ver Detalle
+              </button>
+            </div>            
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="cita-body">
+            <div class="cita-info">
+              <div><strong>Fecha:</strong> {{ cita.fecha | date: 'shortDate' }}</div>
+              <div><strong>Usuario:</strong> {{ cita.cliente || 'Sin asignar' }}</div>
+            </div>
+            <div class="estado-container">
+              <div class="estado-indicador" [ngStyle]="{'background-color': getColorByEstado(cita.estado)}"></div>
+              <div class="estado-text">
+                Estado: {{ cita.estado }}
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

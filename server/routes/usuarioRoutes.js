@@ -9,7 +9,8 @@ router.get('/email/:email', usuarioController.getUsuarioByEmail);
 router.get('/', usuarioController.obtenerTodosEncargados);
 router.get("/all", usuarioController.getAllUsuarios)
 router.put('/asignar',usuarioController.asignarSucursal);
-router.get("/:id", usuarioController.getUsuarioById)
+router.get("/:id", usuarioController.getUsuarioById);
+router.get('/cliente/usuario', usuarioController.getAllUsuariosClientes);
 router.put('/liberar/:id', usuarioController.liberarEncargado);
 
 

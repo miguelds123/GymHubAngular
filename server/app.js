@@ -27,6 +27,7 @@ const horarioDetailRouter = require("./routes/horarioDetailRoutes");
 const bloqueoRouter = require("./routes/bloqueoRoutes");
 const bloqueoDetailRouter = require("./routes/bloqueoDetailRoutes");
 const citabyusuarioRouter = require("./routes/citabyusuarioRoutes")
+const proformaRouter = require("./routes/proformaRoutes")
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -56,7 +57,7 @@ app.use("/horarioDetail/", horarioDetailRouter)
 app.use("/bloqueo/", bloqueoRouter)
 app.use("/bloqueoDetail", bloqueoDetailRouter)
 app.use("/citabyusuario/", citabyusuarioRouter)
-
+app.use("/proforma/", proformaRouter)
 
 //Acceso a las imagenes
 app.use("/images", express.static(path.join(path.resolve(),"/assets/uploads")));

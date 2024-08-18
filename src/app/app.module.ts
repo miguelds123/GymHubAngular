@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HorarioModule } from './horario/horario.module';
 import { SucursalModule } from './sucursal/sucursal.module';
 import { OrdenModule } from './orden/orden.module';
+import { ProformaModule } from './proforma/proforma.module';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { OrdenModule } from './orden/orden.module';
     HorarioModule,
     SucursalModule,
     OrdenModule,
+    ProformaModule,
     AppRoutingModule,
     
     

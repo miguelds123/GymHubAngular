@@ -73,11 +73,13 @@ CREATE TABLE `Cita` (
     `sucursalId` INTEGER NOT NULL,
     `usuarioId` INTEGER NOT NULL,
     `servicioId` INTEGER NOT NULL,
+    `encargadoId` INTEGER NOT NULL,  -- Añadido el campo para el ID del encargado
     `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `horarioId` INTEGER NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 
 -- CreateTable
 CREATE TABLE `Factura` (

@@ -1,0 +1,154 @@
+<form [formGroup]="citaForm" (ngSubmit)="submitCita()" novalidate>
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>{{ titleForm }} Cita</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha" placeholder="Fecha de la cita"
+                   [attr.min]="minDate" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="errorHandling('fecha')">
+              {{ errorHandling('fecha') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Hora de Inicio</mat-label>
+            <input matInput type="time" formControlName="horaInicio" placeholder="Hora de Inicio" />
+            <mat-error *ngIf="errorHandling('horaInicio')">
+              {{ errorHandling('horaInicio') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Hora de Fin</mat-label>
+            <input matInput type="time" formControlName="horaFin" placeholder="Hora de Fin" />
+            <mat-error *ngIf="errorHandling('horaFin')">
+              {{ errorHandling('horaFin') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Sucursal</mat-label>
+            <input matInput formControlName="sucursalId" [value]="sucursalNombre" readonly />
+            <mat-error *ngIf="errorHandling('sucursalId')">
+              {{ errorHandling('sucursalId') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Cliente</mat-label>
+            <mat-select formControlName="usuarioId" (selectionChange)="onClienteChange($event.value)">
+              <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+                {{ cliente.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('usuarioId')">
+              {{ errorHandling('usuarioId') }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput [value]="selectedCliente?.nombre || ''" readonly />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput [value]="selectedCliente?.email || ''" readonly />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Servicio</mat-label>
+            <mat-select formControlName="servicioId" (selectionChange)="onServicioChange($event.value)">
+              <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">
+                {{ servicio.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('servicioId')">
+              {{ errorHandling('servicioId') }}
+            </mat-error>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Tiempo Requerido</mat-label>
+              <input matInput [value]="tiempoRequerido" readonly />
+            </mat-form-field>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado" (selectionChange)="updateEstadoColor($event.value)">
+              <mat-option *ngFor="let estado of estadosCita" [value]="estado">
+                {{ estado }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('estado')">
+              {{ errorHandling('estado') }}
+            </mat-error>
+          </mat-form-field>
+          <!-- Muestra el color del estado en otra parte del formulario -->
+          <div *ngIf="estadoColor" class="estado-color-display">
+            <p>Color del estado:</p>
+            <div [ngStyle]="{'background-color': estadoColor, 'width': '100px', 'height': '30px'}"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Condiciones Médicas</mat-label>
+            <textarea matInput formControlName="condicionesMedicas" placeholder="Condiciones médicas"></textarea>
+            <mat-error *ngIf="errorHandling('condicionesMedicas')">
+              {{ errorHandling('condicionesMedicas') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nivel de Experiencia</mat-label>
+            <input matInput formControlName="nivelExperiencia" placeholder="Nivel de experiencia" />
+            <mat-error *ngIf="errorHandling('nivelExperiencia')">
+              {{ errorHandling('nivelExperiencia') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Objetivo de Entrenamiento</mat-label>
+            <input matInput formControlName="objetivoEntrenamiento" placeholder="Objetivo de entrenamiento" />
+            <mat-error *ngIf="errorHandling('objetivoEntrenamiento')">
+              {{ errorHandling('objetivoEntrenamiento') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button type="submit" color="primary">{{ titleForm }}</button>
+      <button mat-button type="button" (click)="onReset()">Resetear</button>
+      <button mat-button type="button" (click)="onBack()">Regresar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

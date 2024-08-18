@@ -106,6 +106,7 @@ exports.usuarioConFacturasSucursal = async (req, res, next) => {
 }
 
 exports.getAllUsuarios = async (req, res, next) => {
+    console.log("entro");
     try {
         const usuarios = await prisma.usuario.findMany();
         res.json(usuarios);
@@ -131,5 +132,32 @@ exports.getUsuarioById = async (req, res, next) => {
     } catch (error) {
         console.error("Error al obtener el usuario:", error);
         res.status(500).json({ error: "Error interno del servidor" });
+    }
+};
+// controllers/usuarioController.js
+// controllers/usuarioController.js
+exports.getAllUsuariosClientes = async (req, res, next) => {
+
+    console.log("entro");
+    try {
+        console.log("Iniciando la consulta para obtener clientes...");
+
+        const clientes = await prisma.usuario.findMany({
+            where: {
+                role: 'CLIENTE'
+            }
+           
+        });
+
+        console.log("Clientes obtenidos:", clientes);
+
+        res.json(clientes);
+    } catch (error) {
+        console.error("Error al obtener los clientes:", error.message);
+
+        res.status(500).json({
+            error: "Error interno del servidor",
+            details: error.message
+        });
     }
 };
