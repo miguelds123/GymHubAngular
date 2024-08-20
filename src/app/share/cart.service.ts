@@ -1,3 +1,4 @@
+// cart.service.ts
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
 
@@ -7,35 +8,38 @@ export class ItemCart {
   cantidad: number;
   precio: number;
   subtotal: number;
-  tipo: string;         // Nuevo campo para diferenciar productos y servicios
-  impuesto: number  
+  tipo: string;
+  impuesto: number;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cart = new BehaviorSubject<ItemCart[]>(null);
+  private cart = new BehaviorSubject<ItemCart[]>([]);
+  private proformaId: number | null = null;
   public currentDataCart$ = this.cart.asObservable();
   public qtyItems = new Subject<number>();
   public total = new Subject<number>();
 
   constructor() {
-    this.cart = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('orden'))
-    );
+    const savedCart = JSON.parse(localStorage.getItem('orden'));
+    if (savedCart) {
+      this.cart.next(savedCart.items || []);
+      this.proformaId = savedCart.proformaId || null;
+      this.total.next(this.calculoTotal()); // Actualiza el total después de cargar el carrito
+    }
     this.currentDataCart$ = this.cart.asObservable();
   }
 
   saveCart(): void {
-    localStorage.setItem('orden', JSON.stringify(this.cart.getValue()));
+    localStorage.setItem('orden', JSON.stringify({ items: this.cart.getValue(), proformaId: this.proformaId }));
   }
 
   addToCart(producto: any) {
     const newItem = new ItemCart();
     let tipo: string;
 
-    // Determinar si es un Producto o un Servicio y asignar precio y tipo
     if (producto.hasOwnProperty('precio') && producto.hasOwnProperty('categoria')) {
       tipo = 'Producto';
       newItem.precio = producto.precio;
@@ -47,15 +51,13 @@ export class CartService {
     newItem.idItem = producto.id || producto.idItem;
     newItem.cantidad = 1;
     newItem.subtotal = this.calculoSubtotal(newItem);
-    newItem.impuesto = this.calculoImpuesto(newItem)
+    newItem.impuesto = this.calculoImpuesto(newItem);
     newItem.product = producto;
-    newItem.tipo = tipo;  // Asignar el tipo al nuevo item
+    newItem.tipo = tipo;
 
     let listCart = this.cart.getValue();
     if (listCart) {
-      // Verificar si ya existe un ítem con el mismo id y tipo
       let objIndex = listCart.findIndex((obj) => obj.idItem == newItem.idItem && obj.tipo === newItem.tipo);
-
       if (objIndex != -1) {
         if (producto.hasOwnProperty('cantidad')) {
           if (producto.cantidad <= 0) {
@@ -82,12 +84,21 @@ export class CartService {
     this.saveCart();
   }
 
-  public calculoImpuesto(item: ItemCart){
-    return (item.precio * 0.13) * item.cantidad
+  setProformaId(id: number) {
+    this.proformaId = id;
+    this.saveCart();
+  }
+
+  getProformaId() {
+    return this.proformaId;
+  }
+
+  public calculoImpuesto(item: ItemCart) {
+    return (item.precio * 0.13) * item.cantidad;
   }
 
   public calculoSubtotal(item: ItemCart) {
-    return item.precio * item.cantidad
+    return item.precio * item.cantidad;
   }
 
   public removeFromCart(newData: ItemCart) {
@@ -103,8 +114,8 @@ export class CartService {
   }
 
   updateCart(cartItems: ItemCart[]) {
-    this.cart.next(cartItems);  // Aquí 'next' se usa correctamente en el BehaviorSubject
-    this.saveCart();            // Guardar en localStorage o donde se almacene el carrito
+    this.cart.next(cartItems);
+    this.saveCart();
     this.qtyItems.next(this.quantityItems());
     this.total.next(this.calculoTotal());
   }
@@ -135,9 +146,10 @@ export class CartService {
     if (listCart != null) {
       listCart.forEach((item: ItemCart) => {
         totalCalc += item.subtotal;
-        totalCalc += item.impuesto
+        totalCalc += item.impuesto;
       });
     }
+    console.log('Total calculado:', totalCalc); // Verifica el total calculado
     return totalCalc;
   }
 
@@ -147,9 +159,14 @@ export class CartService {
   }
 
   public deleteCart() {
-    this.cart.next(null);
+    // Vaciar el carrito
+    this.cart.next([]);
+    // Establecer proformaId a null
+    this.proformaId = null;
+    // Reiniciar la cantidad de artículos y el total a 0
     this.qtyItems.next(0);
     this.total.next(0);
+    // Guardar los cambios en localStorage
     this.saveCart();
-  }
+}
 }

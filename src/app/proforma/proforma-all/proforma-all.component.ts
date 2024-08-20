@@ -3,6 +3,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from '../../share/generic.service';
 import { Router } from '@angular/router';
 import { NotificacionService } from '../../share/notification.service';
+import { CartService } from '../../share/cart.service';
 
 @Component({
   selector: 'app-proforma-all',
@@ -20,6 +21,7 @@ export class ProformaAllComponent {
     private gService: GenericService,
     private router: Router,
     private noti: NotificacionService,
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +48,17 @@ export class ProformaAllComponent {
     } else {
       console.error('ID no definido');
     }
+  }
+
+  comprar(id: number, idProforma: number) {
+    this.gService.get("servicio/", id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((respuesta: any) => {
+        respuesta.proformaId = idProforma;
+        this.cartService.addToCart(respuesta);
+        this.cartService.setProformaId(idProforma);  // Establecer el proformaId en el servicio
+        this.router.navigate(["/orden"]);
+      });
   }
   
   crearCita() {

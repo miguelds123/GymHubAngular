@@ -57,5 +57,16 @@ module.exports.create = async (request, response, next) => {
       } : undefined,
     },
   });
+  
+  console.log(infoFactura.proformaId)
+
+  if (infoFactura.proformaId !== undefined){
+    // Actualizar el estado de la proforma a true
+    await prisma.proforma.update({
+      where: { id: infoFactura.proformaId }, // Asegúrate de que proformaId esté en infoFactura
+      data: { estado: true },
+    });
+  }
+
   response.json(newFactura);
 };

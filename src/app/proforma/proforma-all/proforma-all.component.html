@@ -10,6 +10,9 @@
                 <button mat-raised-button color="primary" (click)="detalle(cita.id)">
                   Ver Detalle
                 </button>
+                <button mat-raised-button color="primary" *ngIf="!cita.estado" (click)="comprar(cita.servicio.id, cita.id)">
+                  Facturar Proforma
+                </button>
               </div>            
             </div>
           </mat-card-header>
@@ -17,7 +20,7 @@
             <div class="cita-body">
               <div class="cita-info">
                 <div><strong>ID:</strong> {{ cita.id }}</div>
-                <div><strong>Fecha:</strong> {{ cita.createdAt | date: 'shortDate' }}</div>
+                <div><strong>Fecha:</strong> {{ cita.fechaRerserva | date: 'shortDate' }}</div>
                 <div><strong>Usuario:</strong> {{ cita.cliente.nombre || 'Sin asignar' }}</div>
               </div>
             </div>

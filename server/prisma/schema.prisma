@@ -26,7 +26,7 @@ model Usuario {
   role            Role      @default(CLIENTE)
   citas           Cita[]
   facturas        Factura[]
-    proformas Proforma[]
+  proformas       Proforma[]
   Sucursal        Sucursal? @relation(fields: [sucursalId], references: [id])
   sucursalId      Int?
 }
@@ -49,7 +49,7 @@ model Sucursal {
   Factura        Factura[]
   HorarioBloqueo HorarioBloqueo[]
   Horario        Horario[]
-   proformas Proforma[]
+  proformas      Proforma[]
 }
 
 model Servicio {
@@ -63,7 +63,7 @@ model Servicio {
   imagen                String
   citas                 Cita[]
   DetalleFactura        DetalleFacturaServicios[]
-   proformas Proforma[]
+  proformas             Proforma[]
 }
 
 model Producto {
@@ -120,14 +120,13 @@ model Cita {
   usuario               Usuario    @relation(fields: [usuarioId], references: [id])
   servicioId            Int
   servicio              Servicio   @relation(fields: [servicioId], references: [id])
-   proformas Proforma[]
+  proformas             Proforma[]
   encargadoId           Int // ID del encargado, sin relación directa
   objetivoEntrenamiento String // Pregunta específica del negocio
   nivelExperiencia      String // Pregunta específica del negocio
   condicionesMedicas    String // Pregunta específica del negocio
   updatedAt             DateTime   @default(now()) @updatedAt
 }
-
 
 enum EstadoCita {
   PENDIENTE
@@ -174,21 +173,23 @@ model DetalleFacturaServicios {
 
   @@id([facturaId, idDetalle])
 }
+
 model Proforma {
-  id        Int      @id @default(autoincrement())
-  citaId    Int      @unique
-  clienteId Int
-  sucursalId Int
-  servicioId Int
-  cantidad  Int      @default(1)
-  subtotal  Float
-  total     Float
+  id            Int      @id @default(autoincrement())
+  citaId        Int      @unique
+  clienteId     Int
+  sucursalId    Int
+  servicioId    Int
+  cantidad      Int      @default(1)
+  subtotal      Float
+  total         Float
   fechaRerserva DateTime
-  createdAt DateTime @default(now())
+  createdAt     DateTime @default(now())
+  estado        Boolean  @default(false)  // Nuevo campo agregado
 
   // Relaciones
-  cita      Cita     @relation(fields: [citaId], references: [id])
-  cliente   Usuario  @relation(fields: [clienteId], references: [id])
-  sucursal  Sucursal @relation(fields: [sucursalId], references: [id])
-  servicio  Servicio @relation(fields: [servicioId], references: [id])
+  cita          Cita     @relation(fields: [citaId], references: [id])
+  cliente       Usuario  @relation(fields: [clienteId], references: [id])
+  sucursal      Sucursal @relation(fields: [sucursalId], references: [id])
+  servicio      Servicio @relation(fields: [servicioId], references: [id])
 }

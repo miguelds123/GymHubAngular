@@ -190,6 +190,7 @@ exports.createCita = async (req, res, next) => {
                 cantidad: 1,
                 subtotal: subtotal,
                 total: total,
+                fechaRerserva: nuevaCita.fecha,
             },
         });
 
