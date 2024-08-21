@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; 
+import { CartService } from '../../share/cart.service';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -8,47 +10,38 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isAuthenticated: boolean;
-  currentUser: any;
-  qtyItems: number = 1;
-  sucursalNombre: string;
-  sucursalId: number; // Variable para almacenar el ID de la sucursal
-
-  constructor(
+  isAuntenticated:boolean
+  currentUser:any
+  qtyItems:Number=0
+  constructor(private cartService: CartService,
     private router: Router,
-    private route: ActivatedRoute,
-    private http: HttpClient
-  ) {}
-
-  ngOnInit(): void {
-    this.isAuthenticated = true; // Cambiar a lógica real de autenticación
-    this.currentUser = {
-      email: 'ana.martinez@prueba.com'
-    };
-
-    // Obtener el usuario por correo electrónico
-    this.getUsuarioByEmail(this.currentUser.email)
-      .subscribe((usuario: any) => {
-        if (usuario && usuario.id) {
-          // Obtener la sucursal por Id del usuario
-          this.getSucursalByUserId(usuario.id)
-            .subscribe((sucursal: any) => {
-              if (sucursal && sucursal.id && sucursal.nombre) {
-                this.sucursalId = sucursal.id; // Guardar el ID de la sucursal
-                this.sucursalNombre = sucursal.nombre;
-              }
-            });
-        }
-      });
+    private authService: AuthenticationService
+  ) {
+    //Obtener valor actual de la cantidad de items comprados
+    this.qtyItems=this.cartService.quantityItems()
   }
-
-  // Función para obtener el usuario por correo electrónico
-  getUsuarioByEmail(email: string) {
-    return this.http.get(`http://localhost:3000/usuario/email/${email}`);
+  ngOnInit():void{
+    //Suscripción al método que cuenta la cantidad de items comprados
+    this.cartService.countItems.subscribe((valor)=>{
+      this.qtyItems=valor
+    })
+  /*   this.isAuntenticated=false
+    this.currentUser={
+      email: "isw@prueba.com"
+    } */
+    this.authService.isAuthenticated.subscribe((valor)=>{
+      this.isAuntenticated=valor
+    })
+    //Información usuario actual
+    this.authService.decodeToken.subscribe((user:any)=>{
+      this.currentUser=user
+    })
   }
-
-  // Función para obtener la sucursal por Id del usuario
-  getSucursalByUserId(userId: number) {
-    return this.http.get(`http://localhost:3000/sucursal/usuario/${userId}`);
+  login(){
+    this.router.navigate(['usuario/login']);
+  }
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['inicio']);
   }
 }

@@ -8,7 +8,7 @@ import { CoreModule } from './core/core.module';
 import { ShareModule } from './share/share.module';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FacturasModule } from './facturas/facturas.module';
 import { ProductoModule } from './producto/producto.module';
@@ -18,6 +18,8 @@ import { HorarioModule } from './horario/horario.module';
 import { SucursalModule } from './sucursal/sucursal.module';
 import { OrdenModule } from './orden/orden.module';
 import { ProformaModule } from './proforma/proforma.module';
+import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
+import { HttpAuthInterceptorService } from './share/http-auth-interceptor.service';
 
 
 @NgModule({
@@ -46,7 +48,17 @@ import { ProformaModule } from './proforma/proforma.module';
     
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi:true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpAuthInterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

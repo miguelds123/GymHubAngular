@@ -19,13 +19,21 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms'; 
 import { UserAllComponent } from './user-all/user-all.component';
 import { UserDiagComponent } from './user-diag/user-diag.component';
+import { UserIndexComponent } from './user-index/user-index.component';
+import { UserCreateComponent } from './user-create/user-create.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
   declarations: [
     
     UserAllComponent,
-    UserDiagComponent
+    UserDiagComponent,
+    UserIndexComponent,
+    UserCreateComponent,
+    UserLoginComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +53,8 @@ import { UserDiagComponent } from './user-diag/user-diag.component';
     MatRadioModule,
     MatChipsModule,
     MatBadgeModule,
+    MatTabsModule,
+    LayoutModule,
     FormsModule,
     ReactiveFormsModule
   ]

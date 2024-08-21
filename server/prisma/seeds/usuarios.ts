@@ -9,7 +9,7 @@ export const usuarios = [
     email: "ana.martinez@prueba.com",
     direccion: "Avenida Siempre Viva 742",
     fechaNacimiento: new Date("1988-05-14T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.ENCARGADO,
     sucursalId: 2
   },
@@ -21,7 +21,7 @@ export const usuarios = [
     email: "carlos.perez@prueba.com",
     direccion: "Calle Falsa 123",
     fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.ENCARGADO,
     sucursalId: 5
   },
@@ -33,7 +33,7 @@ export const usuarios = [
     email: "jeydan.mitchell@prueba.com",
     direccion: "Calle Falsa 123",
     fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.ENCARGADO,
     sucursalId: 1
   },
@@ -45,7 +45,7 @@ export const usuarios = [
     email: "manfred.ugalde@prueba.com",
     direccion: "Calle Falsa 123",
     fechaNacimiento: new Date("1975-08-22T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.ENCARGADO,
   },
 
@@ -57,7 +57,7 @@ export const usuarios = [
     email: "lucia.gomez@prueba.com",
     direccion: "Boulevard de los Sueños 456",
     fechaNacimiento: new Date("1992-03-10T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.CLIENTE,
   },
   // Usuario 4
@@ -68,7 +68,7 @@ export const usuarios = [
     email: "mario.lopez@prueba.com",
     direccion: "Calle Luna 789",
     fechaNacimiento: new Date("1985-11-02T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.CLIENTE,
   },
   // Usuario 5
@@ -79,7 +79,7 @@ export const usuarios = [
     email: "mdsantamaria02@gmail.com",
     direccion: "Calle Estrella 123",
     fechaNacimiento: new Date("1990-09-09T00:00:00.000Z"),
-    password: "1234",
+    password: "$2b$10$1BaQqXuZYNLDAC42PY5fN.ufSOKjApmjkaZrQUYf7ms71PaS1mASO",
     role: Role.ADMINISTRADOR,
   }
 ];

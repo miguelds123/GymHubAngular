@@ -12,6 +12,8 @@ router.put('/asignar',usuarioController.asignarSucursal);
 router.get("/:id", usuarioController.getUsuarioById);
 router.get('/cliente/usuario', usuarioController.getAllUsuariosClientes);
 router.put('/liberar/:id', usuarioController.liberarEncargado);
+router.post("/login", usuarioController.login);
+router.post("/registrar", usuarioController.register);
 
 
 module.exports = router;
