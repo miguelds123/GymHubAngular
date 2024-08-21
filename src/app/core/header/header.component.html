@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
-  <button [matMenuTriggerFor]="menu1" mat-icon-button class="example-icon" matTooltip="Menu">
+  <button *ngIf="isAuntenticated" [matMenuTriggerFor]="menu1" mat-icon-button class="example-icon" matTooltip="Menu">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <button mat-icon-button matTooltip="Mantenimientos" [matMenuTriggerFor]="menu2"> <mat-icon>save_as</mat-icon></button>
+  <button *ngIf="isAuntenticated" mat-icon-button matTooltip="Mantenimientos" [matMenuTriggerFor]="menu2"> <mat-icon>save_as</mat-icon></button>
 
   <mat-menu #menu1="matMenu">
     <button mat-menu-item [routerLink]="['/inicio']" routerLinkActive="link-active">Inicio</button>
@@ -17,11 +17,11 @@
   </mat-menu>
 
   <mat-menu #menu2="matMenu">
-    <button mat-menu-item [routerLink]="'/productostable'" [routerLinkActive]="'link-active'">Productos</button>
-    <button mat-menu-item [routerLink]="'/serviciostable'" [routerLinkActive]="'link-active'">Servicios</button>
-    <button mat-menu-item [routerLink]="'/horariostable'" [routerLinkActive]="'link-active'">Horarios</button>
+    <button mat-menu-item [routerLink]="'/productostable'" *ngIf="this.currentUser?.role==='ADMINISTRADOR'" [routerLinkActive]="'link-active'">Productos</button>
+    <button mat-menu-item [routerLink]="'/serviciostable'" *ngIf="this.currentUser?.role==='ADMINISTRADOR'" [routerLinkActive]="'link-active'">Servicios</button>
+    <button mat-menu-item [routerLink]="'/horariostable'" *ngIf="this.currentUser?.role === 'ADMINISTRADOR' || this.currentUser?.role === 'ENCARGADO'" [routerLinkActive]="'link-active'">Horarios</button>
     <button mat-menu-item [routerLink]="'/citatable'" [routerLinkActive]="'link-active'">Citas</button>
-    <button mat-menu-item [routerLink]="'/sucursalestable'" [routerLinkActive]="'link-active'">Sucursales</button>
+    <button mat-menu-item [routerLink]="'/sucursalestable'" *ngIf="this.currentUser?.role==='ADMINISTRADOR'" [routerLinkActive]="'link-active'">Sucursales</button>
     <button mat-menu-item [routerLink]="'/encargadostable'" [routerLinkActive]="'link-active'">Asignar Sucursal</button>
     <button mat-menu-item [routerLink]="'/proforma'" [routerLinkActive]="'link-active'">Proformas</button>
   </mat-menu>
@@ -29,7 +29,7 @@
   <!--enlaces de la app-->
   <div class="example-spacer"></div>
   <div class="example-spacer">
-    <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()"
+    <button *ngIf="isAuntenticated" mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()"
    [routerLink]="'/orden'"  
    [routerLinkActive]="'link-active'">
      <mat-icon>shopping_cart</mat-icon>

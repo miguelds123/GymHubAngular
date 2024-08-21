@@ -6,6 +6,7 @@ import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { GenericService } from '../../share/generic.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-horario-all',
@@ -29,16 +30,35 @@ export class HorarioAllComponent implements AfterViewInit, OnDestroy {
   sucursales: any[] = [];
   selectedSucursal: any = null;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  currentUser: any
 
   constructor(
     private gService: GenericService,
     private dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthenticationService
   ) {}
 
   ngAfterViewInit(): void {
     this.listSucursales();
+
+    this.authService.decodeToken.subscribe((user: any) => {
+      this.currentUser = user;
+      if (this.currentUser) {
+        this.obtenerInformacionUsuario(this.currentUser.id);
+      }
+    });
+  }
+
+  obtenerInformacionUsuario(id: number) {
+    this.gService.get('usuario/', id).subscribe((usuario: any) => {
+      if (this.currentUser.role === 'ENCARGADO') {
+        this.selectedSucursal = usuario.Sucursal; // Asigna la sucursal al encargado
+        console.log(this.selectedSucursal)
+        this.listHorarios()
+      }
+    });
   }
 
   listHorarios() {

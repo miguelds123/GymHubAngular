@@ -10,6 +10,7 @@ import {
 } from '../../share/notification.service';
 import { FileUploadService } from '../../share/file-upload.service';
 import { FormErrorMessage } from '../../form-error-message';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-horario-form',
@@ -33,6 +34,8 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
   preview = '';
   nameImage = 'image-not-found.jpg';
   imageInfos?: Observable<any>;
+  currentUser: any;
+  sucursalSelected: any
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +43,8 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
     private activeRouter: ActivatedRoute,
     private gService: GenericService,
     private noti: NotificacionService,
-    private uploadService: FileUploadService
+    private uploadService: FileUploadService,
+    private authService: AuthenticationService
   ) {
     this.formularioReactive();
   }
@@ -67,9 +71,35 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
           });
       }
     });
+
+    this.authService.decodeToken.subscribe((user: any) => {
+      this.currentUser = user;
+      this.setupSucursalControl(); // Llamar a la función para configurar el control de sucursal
+    });
+
     this.listSucursales();
     this.listaDiaSemana();
     this.listaTipo();
+  }
+
+  setupSucursalControl() {
+    if (this.currentUser && this.currentUser.role === 'ADMINISTRADOR') {
+      // Si es administrador, dejar el campo sucursalId editable
+      this.horarioForm.get('sucursalId')?.enable();
+    } else if (this.currentUser && this.currentUser.role === 'ENCARGADO') {
+      let id = this.currentUser.id
+      this.gService.get('usuario/', id).subscribe((usuario: any) => {
+        if (this.currentUser.role === 'ENCARGADO') {
+          // Si es encargado, deshabilitar el campo sucursalId y preseleccionar su sucursal
+          this.horarioForm.patchValue({
+            sucursalId: usuario.sucursalId
+          });
+          this.sucursalSelected = usuario.sucursalId
+          
+          console.log(this.sucursalSelected)
+        }
+      });
+    }
   }
 
   formularioReactive() {
@@ -77,13 +107,7 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
     this.horarioForm = this.fb.group({
       tipo: [null, Validators.required],
       id: [null, null],
-      sucursalId: [
-        null,
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(numberPattern),
-        ]),
-      ],
+      sucursalId: [{ value: '', disabled: true }, [Validators.required]], // Campo no editable
       diaSemana: [null, Validators.required],
       fecha: [null, Validators.required],
       horaInicio: [null, Validators.required],
@@ -122,10 +146,16 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (this.currentUser && this.currentUser.role === 'ADMINISTRADOR') {
+      this.sucursalSelected = this.horarioForm.get('sucursalId').value
+    }
+
     if (this.horarioForm.value.tipo === 'Horario') {
       const fecha = this.horarioForm.get('fecha')?.value;
       const horaInicio = this.horarioForm.get('horaInicio')?.value;
       const horaFin = this.horarioForm.get('horaFin')?.value;
+
+      console.log(this.horarioForm.get('sucursalId')?.value)
 
       const fechaHoraInicio = this.convertToGMTDate(horaInicio, fecha);
       const fechaHoraFin = this.convertToGMTDate(horaFin, fecha);
@@ -153,7 +183,7 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
             return;
           }
 
-          if (this.isMayorFechaActual(fecha)){
+          if (this.isMayorFechaActual(fecha)) {
             this.noti.mensaje(
               'Fecha no valida',
               'La fecha seleccionada debe ser mayor a la actual',
@@ -166,7 +196,12 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
             ...this.horarioForm.value,
             horaInicio: fechaHoraInicio,
             horaFin: fechaHoraFin,
+            sucursalId: this.sucursalSelected
           };
+
+          console.log(this.horarioForm.value)
+
+          console.log(horarioData)
 
           this.guardarHorario(horarioData);
         });
@@ -174,6 +209,8 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
       const fecha = this.horarioForm.get('fecha')?.value;
       const horaInicio = this.horarioForm.get('horaInicio')?.value;
       const horaFin = this.horarioForm.get('horaFin')?.value;
+
+      console.log(this.sucursalSelected)
 
       const fechaHoraInicio = this.convertToGMTDate(horaInicio, fecha);
       const fechaHoraFin = this.convertToGMTDate(horaFin, fecha);
@@ -201,7 +238,7 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
             return;
           }
 
-          if (this.isMayorFechaActual(fecha)){
+          if (this.isMayorFechaActual(fecha)) {
             this.noti.mensaje(
               'Fecha no valida',
               'La fecha seleccionada debe ser mayor a la actual',
@@ -214,6 +251,7 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
             ...this.horarioForm.value,
             horaInicio: fechaHoraInicio,
             horaFin: fechaHoraFin,
+            sucursalId: this.sucursalSelected
           };
 
           this.guardarHorario(horarioData);
@@ -240,13 +278,14 @@ export class HorarioFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  private isMayorFechaActual(fecha : Date) : boolean {
+  private isMayorFechaActual(fecha: Date): boolean {
     const fechaActual = new Date();
-    console.log(fechaActual.getDate(), fecha.getDate())
-    return (fecha.getDate() < fechaActual.getDate())
+    console.log(fechaActual.getDate(), fecha.getDate());
+    return fecha.getDate() < fechaActual.getDate();
   }
 
   guardarHorario(horarioData: any) {
+    console.log(horarioData)
     if (horarioData.tipo === 'Horario') {
       if (this.isCreate) {
         this.gService

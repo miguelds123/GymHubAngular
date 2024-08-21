@@ -25,12 +25,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { FacturasClienteIndexComponent } from './facturas-cliente-index/facturas-cliente-index.component';
 
 
 @NgModule({
   declarations: [
     FacturasEncargadoIndexComponent,
-    FacturaDetailComponent
+    FacturaDetailComponent,
+    FacturasClienteIndexComponent
   ],
   imports: [
     CommonModule,

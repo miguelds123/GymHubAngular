@@ -8,8 +8,11 @@
 </mat-card-header>
 
 <div class="comboBox">
-  <p>Seleccione la sucursal cuyos horarios desea consultar</p>
-  <mat-form-field appearance="fill">
+  <p *ngIf="currentUser?.role === 'ADMINISTRADOR'">Seleccione la sucursal cuyos horarios desea consultar</p>
+  <p *ngIf="currentUser?.role === 'ENCARGADO'">Sucursal: {{ selectedSucursal?.nombre }}</p>
+  
+  <!-- Mostrar lista desplegable solo para administradores -->
+  <mat-form-field appearance="fill" *ngIf="currentUser?.role === 'ADMINISTRADOR'">
     <mat-label>Seleccionar Sucursal</mat-label>
     <mat-select [(value)]="selectedSucursal" (selectionChange)="filtrarPorSucursal()">
       <mat-option *ngFor="let sucursal of sucursales" [value]="sucursal">

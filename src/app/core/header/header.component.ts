@@ -31,6 +31,7 @@ export class HeaderComponent {
     } */
     this.authService.isAuthenticated.subscribe((valor)=>{
       this.isAuntenticated=valor
+      console.log(this.isAuntenticated)
     })
     //Información usuario actual
     this.authService.decodeToken.subscribe((user:any)=>{
